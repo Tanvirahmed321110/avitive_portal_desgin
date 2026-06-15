@@ -1,0 +1,291 @@
+    /* CSS Variables copy-paste start */
+    :root {
+        --primary-color: #4f46e5;
+        --primary-hover: #4338ca;
+        --background-color: #f1f5f9;
+        --surface-color: #ffffff;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+        --border-color: #cbd5e1;
+        --radius-md: 10px;
+        --radius-xl: 20px;
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+
+    body {
+        background-color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    /* CSS Variables copy-paste end */
+
+    .login-container {
+        background-color: var(--surface-color);
+        border-radius: var(--radius-xl);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        display: flex;
+        width: 100%;
+        max-width: 900px;
+        overflow: hidden;
+        min-height: 500px;
+    }
+
+    /* Image Section (Desktop Only) */
+    .login-image-section {
+        flex: 1;
+        background: linear-gradient(135deg, var(--primary-color), #312e81);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        color: white;
+        text-align: center;
+    }
+
+    .login-image-section .img-wrap {
+        overflow: hidden;
+        width: 80%;
+        max-width: 240px;
+        margin-bottom: 32px;
+        animation: float 3s ease infinite;
+        border-radius: 24px;
+        border: 4px solid #dddddd24;
+        padding: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .reset-section.login-image-section {
+        flex: 1;
+        background: linear-gradient(135deg, #312e81, var(--primary-color));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        color: white;
+        text-align: center;
+    }
+
+
+    .login-image-section img {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0) scale(.94);
+        }
+
+        50% {
+            transform: translateY(-2px) scale(1);
+            border-color: #dddddd00;
+        }
+    }
+
+    /* Form Section */
+    .login-form-section {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .login-header {
+        margin-bottom: 30px;
+    }
+
+    .login-header h2 {
+        font-size: 28px;
+        color: var(--text-main);
+        margin-bottom: 8px;
+    }
+
+    .login-header p {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-main);
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .input-wrapper input {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        font-size: 15px;
+        outline: none;
+        transition: var(--transition);
+    }
+
+    .input-wrapper input:focus {
+        /* border-color: var(--primary-color); */
+        box-shadow: 0 0 0 3px rgba(78, 70, 229, 0.204);
+    }
+
+    .input-wrapper input::placeholder {
+        opacity: .5;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        font-size: 14px;
+    }
+
+    .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .forgot-pass {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .forgot-pass:hover {
+        text-decoration: underline;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 14px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .input-wrapper .toggle-password {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        user-select: none;
+    }
+
+    input[type='checkbox'] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background-color: var(--surface-color, #ffffff);
+        cursor: pointer;
+        border: 2px solid var(--border-color);
+        border-radius: 4px;
+        display: inline-grid;
+        place-content: center;
+        transition: all 0.2s ease-in-out;
+        vertical-align: middle;
+        position: relative;
+    }
+
+    input[type='checkbox']:hover {
+        border-color: var(--primary-color);
+    }
+
+    input[type='checkbox']:checked {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    input[type='checkbox']:checked::before {
+        content: "";
+        width: 10px;
+        height: 5px;
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+        transform: rotate(-45deg) translate(1px, -1px);
+    }
+
+    .login-btn:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+    }
+
+    input[type='checkbox'] {
+        padding: 4px;
+    }
+
+
+    .back-to-login {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: var(--transition);
+        text-align: right;
+    }
+
+    .back-to-login strong {
+        color: var(--primary-color);
+    }
+
+    .back-to-login:hover {
+        text-decoration: underline;
+    }
+
+
+
+
+    /*======================= Responsive Breakpoint for Mobile =======================*/
+    @media (max-width: 768px) {
+        .login-image-section {
+            display: none;
+        }
+
+        /* Hide image on mobile */
+        .login-form-section {
+            padding: 30px 20px;
+        }
+    }

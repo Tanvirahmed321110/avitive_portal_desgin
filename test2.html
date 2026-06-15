@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Customer Dashboard</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Modernized Design Tokens */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+            --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            --accent-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+            --bg-main: #f8fafc;
+            --surface: #ffffff;
+            --text-title: #0f172a;
+            --text-body: #475569;
+            --text-disabled: #94a3b8;
+            --border: #f1f5f9;
+            --warning-light: #fffbeb;
+            --warning-border: #fef3c7;
+            --warning-text: #b45309;
+
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --radius-box: 20px;
+            --radius-pill: 50px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-body);
+            padding: 24px;
+            min-height: 100vh;
+        }
+
+        .dashboard-wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        /* Top Luxury Navbar Section */
+        .dash-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+            padding: 16px 28px;
+            border-radius: var(--radius-box);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+        }
+
+        .brand-profile {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .user-meta h2 {
+            font-size: 16px;
+            color: var(--text-title);
+            font-weight: 700;
+        }
+
+        .user-meta p {
+            font-size: 13px;
+            color: var(--text-disabled);
+        }
+
+        /* Filter Controls */
+        .filter-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .filter-control label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-body);
+        }
+
+        .modern-select {
+            padding: 10px 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-pill);
+            background: var(--surface);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-title);
+            cursor: pointer;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .modern-select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Core Structure */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 32px;
+        }
+
+        /* Left Column: Glassmorphism Card Info */
+        .profile-showcase {
+            background: var(--surface);
+            border-radius: var(--radius-box);
+            padding: 32px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            height: fit-content;
+        }
+
+        .showcase-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-disabled);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px dashed #f1f5f9;
+        }
+
+        .info-row:last-child {
+            border: none;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: var(--text-disabled);
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-title);
+        }
+
+        /* Right Column: Visual Cards & Tables */
+        .analytics-segment {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Modern Gradient Cards */
+        .cards-flex {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gradient-card {
+            padding: 28px;
+            border-radius: var(--radius-box);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .gradient-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .gradient-card.c1 { background: var(--primary-gradient); }
+        .gradient-card.c2 { background: var(--secondary-gradient); }
+        .gradient-card.c3 { background: var(--accent-gradient); }
+
+        .gradient-card .card-lbl {
+            font-size: 13px;
+            opacity: 0.85;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .gradient-card .card-val {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 12px;
+            display: block;
+        }
+
+        /* Elegant Rule Notice Box */
+        .notice-banner {
+            background-color: var(--warning-light);
+            border: 1px solid var(--warning-border);
+            padding: 20px 24px;
+            border-radius: var(--radius-box);
+            color: var(--warning-text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .notice-banner strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .notice-banner ul {
+            padding-left: 20px;
+        }
+
+        /* Premium Data Table styling */
+        .table-card {
+            background: var(--surface);
+            border-radius: var(--radius-box);
+            padding: 28px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .table-card h3 {
+            font-size: 18px;
+            color: var(--text-title);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--text-body);
+            padding: 16px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        td {
+            padding: 18px 16px;
+            font-size: 14px;
+            color: var(--text-title);
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Interactive UI Badges */
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .sms-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        /* Responsive Breakpoint for Mobile friendliness */
+        @media (max-width: 992px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .dash-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .filter-control {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+
+        <!-- Premium Navbar Layout -->
+        <nav class="dash-nav">
+            <div class="brand-profile">
+                <div class="nav-avatar">JD</div>
+                <div class="user-meta">
+                    <h2>John Doe</h2>
+                    <p>Verified Customer Profile</p>
+                </div>
+            </div>
+
+            <!-- Requirement: Filter Option by Month -->
+            <div class="filter-control">
+                <label for="month">Timeline:</label>
+                <select id="month" class="modern-select">
+                    <option value="all">All Months</option>
+                    <option value="jun">June 2026</option>
+                    <option value="may">May 2026</option>
+                    <option value="apr">April 2026</option>
+                </select>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="dashboard-grid">
+
+            <!-- Complete Customer Profile Section -->
+            <aside class="profile-showcase">
+                <h3 class="showcase-title">Customer Profile</h3>
+                <div class="info-row">
+                    <span class="info-label">Full Name</span>
+                    <span class="info-value">John Doe</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone ID</span>
+                    <span class="info-value">+880 1712 345678</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email Address</span>
+                    <span class="info-value">johndoe@email.com</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Account Level</span>
+                    <span class="info-value" style="color:var(--primary-hover)">Gold Member</span>
+                </div>
+            </aside>
+
+            <!-- Dashboard Analytics Segment -->
+            <div class="analytics-segment">
+
+                <!-- Financial Value Cards Grid -->
+                <div class="cards-flex">
+                    <div class="gradient-card c1">
+                        <span class="card-lbl">Total Purchases</span>
+                        <span class="card-val">Tk. 62,800</span>
+                    </div>
+                    <div class="gradient-card c2">
+                        <span class="card-lbl">Total Rewards Earned</span>
+                        <span class="card-val">Tk. 4,250</span>
+                    </div>
+                    <div class="gradient-card c3">
+                        <span class="card-lbl">Available Balance</span>
+                        <span class="card-val">Tk. 1,890</span>
+                    </div>
+                </div>
+
+                <!-- Requirement Policies Alert Message -->
+                <div class="notice-banner">
+                    <strong>💡 Smart Reward Policies & Rules:</strong>
+                    <ul>
+                        <li>Rewards can be requested via the **monthly settlement cycle** only (not daily).</li>
+                        <li>The threshold limit to process a cash withdrawal is minimum **Tk. 500**.</li>
+                        <li>You can optionally use your balance directly to purchase exciting store products.</li>
+                    </ul>
+                </div>
+
+                <!-- Timeline and History Data Table -->
+                <section class="table-card">
+                    <h3>Withdrawal History & Timeline</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date Logged</th>
+                                    <th>Reference ID</th>
+                                    <th>Transaction Mode</th>
+                                    <th>Total Amount</th>
+                                    <th>Settlement Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>12 Jun 2026</td>
+                                    <td>#TRX-99201</td>
+                                    <td>Cash Withdrawal <span class="sms-badge">SMS Sent</span></td>
+                                    <td>Tk. 1,200</td>
+                                    <td><span class="badge-status success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>28 May 2026</td>
+                                    <td>#TRX-88192</td>
+                                    <td>Product Purchase (via Rewards)</td>
+                                    <td>Tk. 650</td>
+                                    <td><span class="badge-status success">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04 May 2026</td>
+                                    <td>#TRX-72109</td>
+                                    <td>Cash Withdrawal <span class="sms-badge">SMS Sent</span></td>
+                                    <td>Tk. 500</td>
+                                    <td><span class="badge-status success">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

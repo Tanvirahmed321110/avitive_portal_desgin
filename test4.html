@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reset Password - Portal</title>
+        <style>
+            /* Syncing CSS Variables with Login Page */
+            :root {
+                --primary-color: #4f46e5;
+                --primary-hover: #4338ca;
+                --background-color: #f1f5f9;
+                --surface-color: #ffffff;
+                --text-main: #1e293b;
+                --text-muted: #64748b;
+                --border-color: #cbd5e1;
+                --radius-md: 12px;
+                --transition: all 0.3s ease;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+
+            body {
+                background-color: var(--background-color);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                padding: 20px;
+            }
+
+            .login-container {
+                background-color: var(--surface-color);
+                border-radius: var(--radius-md);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                display: flex;
+                width: 100%;
+                max-width: 900px;
+                overflow: hidden;
+                min-height: 500px;
+            }
+
+            /* Image Section (Gradient reversed to match design beautifully) */
+            .login-image-section {
+                flex: 1;
+                background: linear-gradient(135deg, #312e81, var(--primary-color));
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 40px;
+                color: white;
+                text-align: center;
+            }
+
+            .login-image-section img {
+                width: 75%;
+                max-width: 280px;
+                margin-bottom: 20px;
+                filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.15));
+            }
+
+            /* Form Section */
+            .login-form-section {
+                flex: 1;
+                padding: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .login-header {
+                margin-bottom: 30px;
+            }
+
+            .login-header h2 {
+                font-size: 26px;
+                color: var(--text-main);
+                margin-bottom: 8px;
+            }
+
+            .login-header p {
+                color: var(--text-muted);
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .form-group {
+                margin-bottom: 24px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--text-main);
+            }
+
+            .input-wrapper input {
+                width: 100%;
+                padding: 14px 16px;
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-md);
+                font-size: 15px;
+                outline: none;
+                transition: var(--transition);
+            }
+
+            .input-wrapper input:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+            }
+
+            .back-to-login {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+                font-size: 14px;
+                color: var(--text-muted);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+            .back-to-login strong {
+                color: var(--primary-color);
+            }
+
+            .back-to-login:hover {
+                text-decoration: underline;
+            }
+
+            .login-btn {
+                width: 100%;
+                padding: 14px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: var(--radius-md);
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .login-btn:hover {
+                background-color: var(--primary-hover);
+                transform: translateY(-1px);
+            }
+
+            @media (max-width: 768px) {
+                .login-image-section {
+                    display: none;
+                }
+                .login-form-section {
+                    padding: 30px 20px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="login-container">
+            <div class="login-image-section">
+                <img src="https://img.freepik.com/free-vector/forgot-password-concept-illustration_114360-1123.jpg"
+                    alt="Reset Password UI Vector">
+                <h3>Secure Recovery</h3>
+                <p style="font-size: 13px; margin-top: 10px; opacity: 0.8;">Don't worry, we will help you get back into your security system.</p>
+            </div>
+
+            <div class="login-form-section">
+                <div class="login-header">
+                    <h2>Reset Password</h2>
+                    <p>Enter your registered phone number below. We will send an OTP code to verify identity.</p>
+                </div>
+
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="recovery-phone">Registered Phone Number</label>
+                        <div class="input-wrapper">
+                            <input type="tel" id="recovery-phone" placeholder="e.g. 017XXXXXXXX" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-btn">Send Reset Link / OTP</button>
+
+                    <a href="login.html" class="back-to-login">Remembered Password? <strong>Sign In</strong></a>
+                </form>
+            </div>
+        </div>
+
+    </body>
+
+</html>
