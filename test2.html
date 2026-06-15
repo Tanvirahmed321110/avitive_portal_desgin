@@ -1,457 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Customer Dashboard</title>
-    <!-- Google Fonts for Modern Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        /* Modernized Design Tokens */
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
-            --secondary-gradient: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
-            --accent-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-
-            --bg-main: #f8fafc;
-            --surface: #ffffff;
-            --text-title: #0f172a;
-            --text-body: #475569;
-            --text-disabled: #94a3b8;
-            --border: #f1f5f9;
-            --warning-light: #fffbeb;
-            --warning-border: #fef3c7;
-            --warning-text: #b45309;
-
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-            --radius-box: 20px;
-            --radius-pill: 50px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-body);
-            padding: 24px;
-            min-height: 100vh;
-        }
-
-        .dashboard-wrapper {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        /* Top Luxury Navbar Section */
-        .dash-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--surface);
-            padding: 16px 28px;
-            border-radius: var(--radius-box);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 32px;
-            border: 1px solid var(--border);
-        }
-
-        .brand-profile {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .nav-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--primary-gradient);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-        }
-
-        .user-meta h2 {
-            font-size: 16px;
-            color: var(--text-title);
-            font-weight: 700;
-        }
-
-        .user-meta p {
-            font-size: 13px;
-            color: var(--text-disabled);
-        }
-
-        /* Filter Controls */
-        .filter-control {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .filter-control label {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-body);
-        }
-
-        .modern-select {
-            padding: 10px 18px;
-            border: 1px solid #e2e8f0;
-            border-radius: var(--radius-pill);
-            background: var(--surface);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-title);
-            cursor: pointer;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .modern-select:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-        }
-
-        /* Core Structure */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 2fr;
-            gap: 32px;
-        }
-
-        /* Left Column: Glassmorphism Card Info */
-        .profile-showcase {
-            background: var(--surface);
-            border-radius: var(--radius-box);
-            padding: 32px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow-md);
-            height: fit-content;
-        }
-
-        .showcase-title {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-disabled);
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 16px 0;
-            border-bottom: 1px dashed #f1f5f9;
-        }
-
-        .info-row:last-child {
-            border: none;
-        }
-
-        .info-label {
-            font-size: 14px;
-            color: var(--text-disabled);
-        }
-
-        .info-value {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-title);
-        }
-
-        /* Right Column: Visual Cards & Tables */
-        .analytics-segment {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        /* Modern Gradient Cards */
-        .cards-flex {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .gradient-card {
-            padding: 28px;
-            border-radius: var(--radius-box);
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-        }
-
-        .gradient-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .gradient-card.c1 { background: var(--primary-gradient); }
-        .gradient-card.c2 { background: var(--secondary-gradient); }
-        .gradient-card.c3 { background: var(--accent-gradient); }
-
-        .gradient-card .card-lbl {
-            font-size: 13px;
-            opacity: 0.85;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .gradient-card .card-val {
-            font-size: 28px;
-            font-weight: 700;
-            margin-top: 12px;
-            display: block;
-        }
-
-        /* Elegant Rule Notice Box */
-        .notice-banner {
-            background-color: var(--warning-light);
-            border: 1px solid var(--warning-border);
-            padding: 20px 24px;
-            border-radius: var(--radius-box);
-            color: var(--warning-text);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .notice-banner strong {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 15px;
-        }
-
-        .notice-banner ul {
-            padding-left: 20px;
-        }
-
-        /* Premium Data Table styling */
-        .table-card {
-            background: var(--surface);
-            border-radius: var(--radius-box);
-            padding: 28px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow-md);
-        }
-
-        .table-card h3 {
-            font-size: 18px;
-            color: var(--text-title);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background-color: #f8fafc;
-            color: var(--text-body);
-            padding: 16px;
-            font-size: 13px;
-            font-weight: 600;
-            text-align: left;
-            border-radius: 8px;
-        }
-
-        td {
-            padding: 18px 16px;
-            font-size: 14px;
-            color: var(--text-title);
-            border-bottom: 1px solid var(--border);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Interactive UI Badges */
-        .badge-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: var(--radius-pill);
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .badge-status.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-        }
-
-        .sms-badge {
-            background: #e0f2fe;
-            color: #0369a1;
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-left: 6px;
-        }
-
-        /* Responsive Breakpoint for Mobile friendliness */
-        @media (max-width: 992px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Customer Dashboard - Sidebar Layout</title>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/pages.css">
+        <style>
+            a {
+                text-decoration: none;
+                color: inherit
             }
-            .dash-nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
+
+            select,
+            button {
+                font-family: inherit
             }
-            .filter-control {
+
+            .card {
+                background: var(--surface-color);
+                border: 1px solid rgba(203, 213, 225, .82);
+                border-radius: var(--radius-xl);
+                padding: 22px;
+                box-shadow: 0 10px 25px rgba(15, 23, 42, .05);
+                transition: var(--transition)
+            }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 16px 36px rgba(15, 23, 42, .08)
+            }
+
+            .label {
+                display: inline-flex;
+                align-items: center;
+                border-radius: 999px;
+                padding: 5px 10px;
+                background: rgba(79, 70, 229, .10);
+                color: var(--primary-color);
+                font-size: 12px;
+                font-weight: 700;
+                margin-bottom: 10px
+            }
+
+            .btn {
+                border: 0;
+                border-radius: var(--radius-md);
+                padding: 12px 16px;
+                background: var(--primary-color);
+                color: #fff;
+                font-size: 13px;
+                font-weight: 700;
+                cursor: pointer;
+                transition: var(--transition)
+            }
+
+            .btn:hover {
+                background: var(--primary-hover);
+                transform: translateY(-1px)
+            }
+
+            .btn-light {
+                background: #eef2ff;
+                color: var(--primary-color)
+            }
+
+            .month-select {
+                height: 42px;
+                min-width: 190px;
+                border: 1px solid var(--border-color);
+                border-radius: var(--radius-md);
+                background: #fff;
+                color: var(--color-text-primary);
+                padding: 0 14px;
+                font-size: 14px;
+                font-weight: 600;
+                outline: 0;
+                font-family: inherit;
+                background: #eef2ff;
+            }
+
+            .month-select:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(79, 70, 229, .18)
+            }
+
+            .stat h2 {
+                font-size: 27px;
+                margin: 8px 0 6px
+            }
+
+            .stat p,
+            .muted {
+                color: var(--text-muted);
+                font-size: 13px;
+                line-height: 1.55
+            }
+
+            .stat-icon {
+                width: 46px;
+                height: 46px;
+                border-radius: 15px;
+                background: rgba(79, 70, 229, .10);
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                margin-bottom: 14px
+            }
+
+            .table-wrap {
+                overflow-x: auto
+            }
+
+            table {
                 width: 100%;
-                justify-content: space-between;
+                min-width: 720px;
+                border-collapse: collapse
             }
-        }
-    </style>
-</head>
-<body>
 
-    <div class="dashboard-wrapper">
+            th {
+                background: #f8fafc;
+                color: var(--text-muted);
+                text-align: left;
+                font-size: 12px;
+                padding: 13px 12px;
+                border-bottom: 1px solid var(--border-color)
+            }
 
-        <!-- Premium Navbar Layout -->
-        <nav class="dash-nav">
-            <div class="brand-profile">
-                <div class="nav-avatar">JD</div>
-                <div class="user-meta">
-                    <h2>John Doe</h2>
-                    <p>Verified Customer Profile</p>
-                </div>
-            </div>
+            td {
+                padding: 14px 12px;
+                border-bottom: 1px solid #e2e8f0;
+                font-size: 13px
+            }
 
-            <!-- Requirement: Filter Option by Month -->
-            <div class="filter-control">
-                <label for="month">Timeline:</label>
-                <select id="month" class="modern-select">
-                    <option value="all">All Months</option>
-                    <option value="jun">June 2026</option>
-                    <option value="may">May 2026</option>
-                    <option value="apr">April 2026</option>
-                </select>
-            </div>
-        </nav>
+            .primary-text {
+                color: var(--primary-color);
+                font-weight: 700
+            }
 
-        <!-- Main Content Area -->
-        <div class="dashboard-grid">
+            .success-text {
+                color: #16a34a;
+                font-weight: 700
+            }
 
-            <!-- Complete Customer Profile Section -->
-            <aside class="profile-showcase">
-                <h3 class="showcase-title">Customer Profile</h3>
-                <div class="info-row">
-                    <span class="info-label">Full Name</span>
-                    <span class="info-value">John Doe</span>
+            .badge {
+                display: inline-flex;
+                border-radius: 999px;
+                padding: 4px 8px;
+                font-size: 11px;
+                font-weight: 700
+            }
+
+            .paid {
+                background: #dcfce7;
+                color: #166534
+            }
+
+            .pending {
+                background: #fef3c7;
+                color: #92400e
+            }
+
+            .notification {
+                display: flex;
+                gap: 12px;
+                padding: 14px;
+                border-radius: 16px;
+                background: #f8fafc;
+                border: 1px solid #e2e8f0
+            }
+
+            .notification-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 14px;
+                background: rgba(79, 70, 229, .10);
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 11px;
+                font-weight: 800;
+                flex-shrink: 0
+            }
+
+            .notification h4 {
+                font-size: 14px;
+                margin-bottom: 5px
+            }
+
+            .notification p {
+                color: var(--text-muted);
+                font-size: 12px;
+                line-height: 1.5
+            }
+
+            .shell {
+                display: grid;
+                grid-template-columns: 280px 1fr;
+                min-height: 100vh
+            }
+
+            .sidebar {
+                background: linear-gradient(180deg, var(--primary-color), #312e81);
+                color: #fff;
+                padding: 28px 22px;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            }
+
+
+
+            .side-profile {
+                background: rgba(255, 255, 255, .13);
+                border: 1px solid rgba(255, 255, 255, .18);
+                border-radius: var(--radius-xxl);
+                padding: 16px;
+                margin-bottom: 24px
+            }
+
+            .side-avatar {
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                background: #fff;
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: var(--fs-lg);
+                font-weight: 800;
+                margin-bottom: 12px;
+                border: 3px solid #bac0c7;
+            }
+
+            .side-profile p {
+                font-size: 13px;
+                line-height: 1.8;
+                opacity: .7
+            }
+
+            .menu {
+                display: grid;
+                gap: 8px;
+                padding-top: 24px;
+            }
+
+            .menu a {
+                padding: 12px 14px;
+                border-radius: 10px;
+                color: #fff;
+                font-size: 14px;
+                font-weight: 500;
+                opacity: .84;
+                letter-spacing: .6px;
+                text-transform: capitalize;
+            }
+
+            .menu a.active,
+            .menu a:hover {
+                background: rgba(255, 255, 255, .15);
+                opacity: 1
+            }
+
+
+
+            .main .main-wrap {
+                padding: 32px;
+            }
+
+
+
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+                margin-bottom: 18px
+            }
+
+            .main-grid {
+                display: grid;
+                grid-template-columns: .9fr 1.05fr;
+                gap: 18px;
+                margin-top: 24px;
+            }
+
+            .reward {
+                background: linear-gradient(135deg, var(--primary-color), #312e81);
+                color: #fff;
+                border-radius: var(--radius-xl);
+                padding: 24px;
+                box-shadow: 0 16px 34px rgba(79, 70, 229, .24)
+            }
+
+            .reward h2 {
+                font-size: 25px;
+                margin-bottom: 10px
+            }
+
+            .reward p {
+                color: rgba(255, 255, 255, .88);
+                font-size: 14px;
+                line-height: 1.7;
+                margin-bottom: 18px
+            }
+
+            .rule-list {
+                display: grid;
+                gap: 10px;
+                margin-bottom: 18px
+            }
+
+            .rule {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                background: rgba(255, 255, 255, .14);
+                border-radius: 14px;
+                padding: 12px;
+                font-size: 13px;
+                font-weight: 600
+            }
+
+            .rule span {
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                background: #fff;
+                color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                flex-shrink: 0
+            }
+
+            .actions {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap
+            }
+
+            .actions button {
+                background: #fff;
+                color: var(--primary-color);
+                border: 0;
+                border-radius: var(--radius-md);
+                padding: 12px 15px;
+                font-size: 13px;
+                font-weight: 700;
+                cursor: pointer
+            }
+
+            .timeline {
+                display: grid;
+                gap: 16px
+            }
+
+            .timeline-item {
+                display: grid;
+                grid-template-columns: 18px 1fr auto;
+                gap: 12px;
+                align-items: flex-start
+            }
+
+            .dot {
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--primary-color);
+                border: 4px solid #eef2ff;
+                margin-top: 5px
+            }
+
+            .timeline h4 {
+                font-size: 14px;
+                margin-bottom: 4px
+            }
+
+            .timeline p {
+                color: var(--text-muted);
+                font-size: 12px;
+                margin-bottom: 7px
+            }
+
+            .timeline strong {
+                color: #16a34a;
+                white-space: nowrap;
+                font-size: 14px
+            }
+
+            .notification-list {
+                display: grid;
+                gap: 12px
+            }
+
+            @media(max-width:1100px) {
+                .shell {
+                    grid-template-columns: 1fr
+                }
+
+                .sidebar {
+                    height: auto;
+                    position: relative
+                }
+
+                .menu {
+                    grid-template-columns: repeat(4, 1fr)
+                }
+
+                .stats {
+                    grid-template-columns: repeat(2, 1fr)
+                }
+
+                .main-grid {
+                    grid-template-columns: 1fr
+                }
+            }
+
+            @media(max-width:768px) {
+                .main {
+                    padding: 20px
+                }
+
+                .topbar {
+                    flex-direction: column
+                }
+
+                .month-select {
+                    width: 100%
+                }
+
+                .stats {
+                    grid-template-columns: 1fr
+                }
+
+                .menu {
+                    grid-template-columns: 1fr 1fr
+                }
+
+                .timeline-item {
+                    grid-template-columns: 18px 1fr
+                }
+
+                .timeline strong {
+                    grid-column: 2
+                }
+
+                .actions button {
+                    width: 100%
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+
+        <div class="shell">
+            <aside class="sidebar">
+                <div class="side-profile">
+                    <div class="d-flex gap-3 align-center">
+                        <div class="side-avatar">RH</div>
+                        <div>
+                            <div class="fs-lg fw-bold">Rakib Hasan</div>
+                            <p class=""> ID: CUS-00045</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p>Phone: 017XXXXXXXX</p>
+                        <p>Email: rakib@example.com</p>
+                    </div>
                 </div>
-                <div class="info-row">
-                    <span class="info-label">Phone ID</span>
-                    <span class="info-value">+880 1712 345678</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Email Address</span>
-                    <span class="info-value">johndoe@email.com</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Account Level</span>
-                    <span class="info-value" style="color:var(--primary-hover)">Gold Member</span>
-                </div>
+                <nav class="menu">
+                    <a class="active" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 10.5L12 3l9 7.5" />
+                            <path d="M5 10v10h14V10" />
+                            <path d="M9 20v-6h6v6" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2l1.5 4h9L18 2" />
+                            <path d="M3 6h18l-2 15H5L3 6z" />
+                            <path d="M9 10v6" />
+                            <path d="M15 10v6" />
+                        </svg>
+                        <span>Purchases</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l2.9 6.1 6.7.9-4.8 4.7 1.1 6.6L12 17.2 6.1 20.3l1.1-6.6L2.4 9l6.7-.9L12 2z" />
+                        </svg>
+                        <span>Rewards</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3v12" />
+                            <path d="M7 10l5 5 5-5" />
+                            <path d="M5 21h14" />
+                        </svg>
+                        <span>Withdrawals</span>
+                    </a>
+                </nav>
             </aside>
 
-            <!-- Dashboard Analytics Segment -->
-            <div class="analytics-segment">
+            <main class="main">
+                <header class="topbar align-center">
+                    <div>
+                        <h1>Customer Dashboard</h1>
+                        <p>Complete overview of customer profile, purchases, rewards, available balance and withdrawal
+                            timeline.</p>
+                    </div>
+                    <div class="d-flex align-center gap-4">
+                        <select class="month-select">
+                            <option>Filter by Month</option>
+                            <option>January 2026</option>
+                            <option>February 2026</option>
+                            <option>March 2026</option>
+                            <option>April 2026</option>
+                            <option>May 2026</option>
+                            <option>June 2026</option>
+                        </select>
+                        <div class="profile d-flex  gap-2">
+                            <img src="https://lh3.googleusercontent.com/-owKu1iCCv1U/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkkoF57nnKwpNOdtH-5uYsJd1iv1fQ/photo.jpg?sz=46"
+                                class="profile-img" alt="">
+                            <div>
+                                <h5>Hi,</h5>
+                                <div class="name mt-1 text-center fw-medium">Tanvir</div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
 
-                <!-- Financial Value Cards Grid -->
-                <div class="cards-flex">
-                    <div class="gradient-card c1">
-                        <span class="card-lbl">Total Purchases</span>
-                        <span class="card-val">Tk. 62,800</span>
+
+                <div class="main-wrap">
+                    <div class="stats">
+                        <div class="card stat">
+                            <div class="stat-icon">👤</div><span class="label">Profile</span>
+                            <h2>Active</h2>
+                            <p>Complete customer profile and verified mobile.</p>
+                        </div>
+                        <div class="card stat">
+                            <div class="stat-icon">৳</div><span class="label">Total Purchases</span>
+                            <h2>৳ 85,500</h2>
+                            <p>Lifetime customer purchase amount.</p>
+                        </div>
+                        <div class="card stat">
+                            <div class="stat-icon">★</div><span class="label">Rewards Earned</span>
+                            <h2>৳ 8,250</h2>
+                            <p>Total rewards generated from purchases.</p>
+                        </div>
+                        <div class="card stat">
+                            <div class="stat-icon">↓</div><span class="label">Available Balance</span>
+                            <h2>৳ 2,750</h2>
+                            <p>Minimum withdrawal amount Tk. 500.</p>
+                        </div>
                     </div>
-                    <div class="gradient-card c2">
-                        <span class="card-lbl">Total Rewards Earned</span>
-                        <span class="card-val">Tk. 4,250</span>
+                    <div class="main-grid">
+                        <section class="reward">
+                            <span class="label" style="background:rgba(255,255,255,.16);color:#fff;">Reward
+                                Withdrawal</span>
+                            <h2>Monthly Reward Settlement</h2>
+                            <p>Rewards can be withdrawn monthly only. Customers may also use rewards to purchase
+                                products.
+                            </p>
+                            <div class="rule-list">
+                                <div class="rule"><span>✓</span>Monthly withdrawal only, not daily</div>
+                                <div class="rule"><span>✓</span>Minimum withdrawal amount Tk. 500</div>
+                                <div class="rule"><span>✓</span>Use rewards to purchase products</div>
+                                <div class="rule"><span>✓</span>SMS notification for every withdrawal</div>
+                            </div>
+                            <div class="actions"><button>Request Withdrawal</button><button>Use Reward to
+                                    Purchase</button>
+                            </div>
+                        </section>
+                        <section class="card"><span class="label">History</span>
+                            <h3 style="margin:8px 0 18px;">Withdrawal Timeline</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="dot"></div>
+                                    <div>
+                                        <h4>Withdrawal Requested</h4>
+                                        <p>Requested on 05 June 2026</p><span class="badge pending">Pending</span>
+                                    </div><strong>৳ 1,500</strong>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="dot"></div>
+                                    <div>
+                                        <h4>Cash Withdrawal</h4>
+                                        <p>SMS notification sent successfully</p><span class="badge paid">Paid</span>
+                                    </div><strong>৳ 2,000</strong>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="dot"></div>
+                                    <div>
+                                        <h4>Reward Redeemed</h4>
+                                        <p>Used rewards for product purchase</p><span
+                                            class="badge paid">Completed</span>
+                                    </div><strong>৳ 850</strong>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div class="gradient-card c3">
-                        <span class="card-lbl">Available Balance</span>
-                        <span class="card-val">Tk. 1,890</span>
+                    <div class="main-grid">
+                        <section class="card"><span class="label">Purchases</span>
+                            <h3 style="margin:8px 0 18px;">Purchase History</h3>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Invoice</th>
+                                            <th>Product</th>
+                                            <th>Purchase</th>
+                                            <th>Reward</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>10 Jun 2026</td>
+                                            <td>INV-00125</td>
+                                            <td>Organic Package A</td>
+                                            <td class="primary-text">৳ 12,500</td>
+                                            <td class="success-text">৳ 650</td>
+                                        </tr>
+                                        <tr>
+                                            <td>25 May 2026</td>
+                                            <td>INV-00105</td>
+                                            <td>Health Product Set</td>
+                                            <td class="primary-text">৳ 8,900</td>
+                                            <td class="success-text">৳ 445</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12 Apr 2026</td>
+                                            <td>INV-00088</td>
+                                            <td>Monthly Combo Pack</td>
+                                            <td class="primary-text">৳ 15,000</td>
+                                            <td class="success-text">৳ 750</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <section class="card"><span class="label">Notifications</span>
+                            <h3 style="margin:8px 0 18px;">SMS Notifications</h3>
+                            <div class="notification-list">
+                                <div class="notification">
+                                    <div class="notification-icon">SMS</div>
+                                    <div>
+                                        <h4>Withdrawal SMS Sent</h4>
+                                        <p>Your withdrawal request of Tk. 1,500 has been received.</p>
+                                    </div>
+                                </div>
+                                <div class="notification">
+                                    <div class="notification-icon">৳</div>
+                                    <div>
+                                        <h4>Reward Added</h4>
+                                        <p>Tk. 650 reward has been added from invoice INV-00125.</p>
+                                    </div>
+                                </div>
+                                <div class="notification">
+                                    <div class="notification-icon">✓</div>
+                                    <div>
+                                        <h4>Settlement Update</h4>
+                                        <p>Your monthly reward settlement is currently under review.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
-
-                <!-- Requirement Policies Alert Message -->
-                <div class="notice-banner">
-                    <strong>💡 Smart Reward Policies & Rules:</strong>
-                    <ul>
-                        <li>Rewards can be requested via the **monthly settlement cycle** only (not daily).</li>
-                        <li>The threshold limit to process a cash withdrawal is minimum **Tk. 500**.</li>
-                        <li>You can optionally use your balance directly to purchase exciting store products.</li>
-                    </ul>
-                </div>
-
-                <!-- Timeline and History Data Table -->
-                <section class="table-card">
-                    <h3>Withdrawal History & Timeline</h3>
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Date Logged</th>
-                                    <th>Reference ID</th>
-                                    <th>Transaction Mode</th>
-                                    <th>Total Amount</th>
-                                    <th>Settlement Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>12 Jun 2026</td>
-                                    <td>#TRX-99201</td>
-                                    <td>Cash Withdrawal <span class="sms-badge">SMS Sent</span></td>
-                                    <td>Tk. 1,200</td>
-                                    <td><span class="badge-status success">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td>28 May 2026</td>
-                                    <td>#TRX-88192</td>
-                                    <td>Product Purchase (via Rewards)</td>
-                                    <td>Tk. 650</td>
-                                    <td><span class="badge-status success">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td>04 May 2026</td>
-                                    <td>#TRX-72109</td>
-                                    <td>Cash Withdrawal <span class="sms-badge">SMS Sent</span></td>
-                                    <td>Tk. 500</td>
-                                    <td><span class="badge-status success">Completed</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-            </div>
+            </main>
         </div>
-    </div>
+    </body>
 
-</body>
 </html>
