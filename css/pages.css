@@ -190,7 +190,8 @@ td {
     border-radius: 999px;
     padding: 4px 8px;
     font-size: 11px;
-    font-weight: 700
+    font-weight: 700;
+    border: 1px solid var(--border-color);
 }
 
 .paid {
@@ -239,7 +240,7 @@ td {
 
 .notification p {
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.5
 }
 
@@ -252,7 +253,7 @@ td {
 .sidebar {
     background: linear-gradient(180deg, var(--primary-color), #312e81);
     color: #fff;
-    padding: 16px 16px;
+    padding: 12px 12px;
     position: sticky;
     padding-bottom: 12px;
     top: 0;
@@ -260,8 +261,9 @@ td {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     margin: 12px;
     height: calc(100dvh - 16px);
-    border-radius: 20px;
+    border-radius: 24px;
     margin-right: 0;
+    display: flex ;flex-direction: column;justify-content: space-between;
 }
 
 
@@ -269,7 +271,7 @@ td {
 .side-profile {
     background: rgba(255, 255, 255, .13);
     border: 1px solid rgba(255, 255, 255, .18);
-    border-radius: var(--radius-xxl);
+    border-radius: 20px;
     padding: 0px;
     margin-bottom: 0px
 }
@@ -296,7 +298,7 @@ td {
 .side-avatar {
     width: 52px;
     height: 52px;
-    border-radius: 26%;
+    border-radius: 50%;
     background: #fff;
     color: var(--primary-color);
     display: flex;
@@ -369,7 +371,7 @@ td {
 }
 
 .card h3 {
-    font-size: var(--fs-lg);
+    font-size: var(--fs-xl);
     margin-top: 8px;
 }
 
@@ -482,7 +484,7 @@ td {
 }
 
 .reward {
-    background: linear-gradient(135deg, var(--primary-color), #6d6d73);
+    background: linear-gradient(233deg, var(--primary-color), #27277c);
     color: #fff;
     border-radius: var(--radius-xl);
     padding: 24px;
@@ -578,8 +580,7 @@ td {
     grid-template-columns: 18px 1fr auto;
     gap: 12px;
     align-items: flex-start;
-    background: #e1e2e355;
-    background: rgb(248, 250, 252);
+    background: #f8fafc;
     border: 1px solid #dfe6fd;
     padding: 12px 16px;
     border-radius: 16px;
@@ -664,8 +665,8 @@ td {
 
 .timeline p {
     color: var(--text-muted);
-    font-size: 12px;
-    margin-bottom: 7px
+    font-size: 13px;
+    margin-bottom: 8px
 }
 
 .timeline strong {
@@ -835,6 +836,12 @@ header.topbar {
         display: grid;
         gap: 8px;
         padding-top: 20px;
+    }
+
+    .shell {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
     }
 }
 
