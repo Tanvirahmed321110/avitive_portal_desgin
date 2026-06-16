@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Purchases - Customer Portal</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="layout">
+
+    <!-- ===== Sidebar ===== -->
+    <aside class="sidebar">
+        <div class="profile-box">
+            <div class="avatar">RH</div>
+            <div>
+                <h3 class="profile-name">Rakib Hasan</h3>
+                <p class="profile-id">ID: CUS-00045</p>
+            </div>
+        </div>
+        <div class="profile-contact">
+            <p>Phone: 017XXXXXXXX</p>
+            <p>Email: rakib@example.com</p>
+            <p>Address: Banasree Rampura</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+                Dashboard
+            </a>
+            <a href="purchases.html" class="nav-item active">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+                Purchases
+            </a>
+            <a href="rewards.html" class="nav-item">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></span>
+                Rewards
+            </a>
+            <a href="withdrawals.html" class="nav-item">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M6 12l6 6 6-6"/><path d="M5 20h14"/></svg></span>
+                Withdrawals
+            </a>
+            <a href="logout.html" class="nav-item">
+                <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></span>
+                Logout
+            </a>
+        </nav>
+    </aside>
+
+    <!-- ===== Main content ===== -->
+    <main class="main">
+        <div class="topbar">
+            <h1 class="gradient-heading">Purchases</h1>
+        </div>
+
+        <div class="stats">
+            <div class="card stat">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+                <span class="label">Total Purchases</span>
+                <h2>৳ 85,500</h2>
+            </div>
+            <div class="card stat">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 4v4"/><path d="M16 4v4"/></svg></div>
+                <span class="label">Total Orders</span>
+                <h2>5</h2>
+            </div>
+            <div class="card stat">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                <span class="label">Reward Earned</span>
+                <h2>৳ 8,250</h2>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="section-tag">Purchases</span>
+            <h2 class="card-title">Purchase History</h2>
+
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Invoice</th>
+                            <th>Product</th>
+                            <th>Purchase</th>
+                            <th>Reward</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10 Jun 2026</td>
+                            <td>INV-00125</td>
+                            <td>Organic Package A</td>
+                            <td class="amount-purchase">৳ 12,500</td>
+                            <td class="amount-reward">৳ 650</td>
+                        </tr>
+                        <tr>
+                            <td>25 May 2026</td>
+                            <td>INV-00105</td>
+                            <td>Health Product Set</td>
+                            <td class="amount-purchase">৳ 8,900</td>
+                            <td class="amount-reward">৳ 445</td>
+                        </tr>
+                        <tr>
+                            <td>12 Apr 2026</td>
+                            <td>INV-00088</td>
+                            <td>Monthly Combo Pack</td>
+                            <td class="amount-purchase">৳ 15,000</td>
+                            <td class="amount-reward">৳ 750</td>
+                        </tr>
+                        <tr>
+                            <td>12 Apr 2026</td>
+                            <td>INV-00088</td>
+                            <td>Monthly Combo Pack</td>
+                            <td class="amount-purchase">৳ 15,000</td>
+                            <td class="amount-reward">৳ 750</td>
+                        </tr>
+                        <tr>
+                            <td>12 Apr 2026</td>
+                            <td>INV-00088</td>
+                            <td>Monthly Combo Pack</td>
+                            <td class="amount-purchase">৳ 15,000</td>
+                            <td class="amount-reward">৳ 750</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

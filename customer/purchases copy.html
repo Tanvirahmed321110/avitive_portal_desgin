@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Customer Dashboard - Sidebar Layout</title>
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/pages.css">
+    </head>
+
+    <body>
+
+
+        <div class="shell">
+
+            <!--=========================================|| Sidebar Here ||======================================= -->
+            <aside class="sidebar">
+                <div class="side-profile">
+                    <div class="d-flex gap-3 align-center">
+                        <div class="side-avatar">RH</div>
+                        <div>
+                            <div class="fs-lg fw-bold">Rakib Hasan</div>
+                            <p class=""> ID: CUS-00045</p>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <p>Phone: 017XXXXXXXX</p>
+                        <p>Email: rakib@example.com</p>
+                        <p>Address: Banasree Rampura</p>
+                    </div>
+                </div>
+                <nav class="menu">
+                    <a class="active" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 10.5L12 3l9 7.5" />
+                            <path d="M5 10v10h14V10" />
+                            <path d="M9 20v-6h6v6" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2l1.5 4h9L18 2" />
+                            <path d="M3 6h18l-2 15H5L3 6z" />
+                            <path d="M9 10v6" />
+                            <path d="M15 10v6" />
+                        </svg>
+                        <span>Purchases</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l2.9 6.1 6.7.9-4.8 4.7 1.1 6.6L12 17.2 6.1 20.3l1.1-6.6L2.4 9l6.7-.9L12 2z" />
+                        </svg>
+                        <span>Rewards</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3v12" />
+                            <path d="M7 10l5 5 5-5" />
+                            <path d="M5 21h14" />
+                        </svg>
+                        <span>Withdrawals</span>
+                    </a>
+
+                    <a href="/web/session/logout">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <path d="M16 17l5-5-5-5" />
+                            <path d="M21 12H9" />
+                        </svg>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- ===== Main content ===== -->
+            <main class="main">
+                <div class="topbar">
+                    <h1 class="gradient-heading">Rewards</h1>
+                </div>
+                <div class="main-wrap">
+
+                    <div class="grid-3 gap-6">
+                        <div class="card stat">
+                            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg></div>
+                            <span class="label">Total Rewards Earned</span>
+                            <h2>৳ 8,250</h2>
+                        </div>
+                        <div class="card stat">
+                            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 8h12l-1 12H7L6 8z" />
+                                    <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+                                </svg></div>
+                            <span class="label">Reward Redeemed</span>
+                            <h2>৳ 850</h2>
+                        </div>
+                        <div class="card stat">
+                            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+                                    <path d="M16 12h3" />
+                                </svg></div>
+                            <span class="label">Available Balance</span>
+                            <h2>৳ 7,400</h2>
+                        </div>
+                    </div>
+
+                    <div class="card other-card mt-6">
+                        <span class="section-tag">Rewards</span>
+                        <h2 class="card-title">Reward History</h2>
+
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <h4>Reward Added</h4>
+                                <p>Tk. 650 reward added from invoice INV-00125</p>
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                            <span class="timeline-amount">+ ৳ 650</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <h4>Reward Redeemed</h4>
+                                <p>Used rewards for product purchase</p>
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                            <span class="timeline-amount negative">- ৳ 850</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <h4>Reward Added</h4>
+                                <p>Tk. 750 reward added from invoice INV-00088</p>
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                            <span class="timeline-amount">+ ৳ 750</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-content">
+                                <h4>Monthly Settlement Update</h4>
+                                <p>Your monthly reward settlement is currently under review</p>
+                                <span class="status-badge pending">Pending</span>
+                            </div>
+                            <span class="timeline-amount">৳ 8,250</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+
+</html>
