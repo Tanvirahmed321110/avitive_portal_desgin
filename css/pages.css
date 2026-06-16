@@ -348,15 +348,19 @@ td {
 .card::before {
     content: "";
     position: absolute;
-    right: -90px;
-    top: -45px;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 120px;
     height: 120px;
     background: rgba(79, 70, 229, 0.08);
     border-radius: 50%;
     border: 1px solid #e3e1f9;
+    transition: var(--transition);
 }
-
+.card:hover::before{
+    right: -55px;
+}
 .card svg {
     width: 22px;
     height: 24px;
@@ -405,11 +409,11 @@ td {
 .reward h2 {
     font-size: 25px;
     margin-bottom: 10px;
-    color: white;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .reward p {
-    color: rgba(255, 255, 255, 0.722);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 14px;
     line-height: 1.7;
     margin-bottom: 18px
@@ -430,7 +434,7 @@ td {
     padding: 12px;
     font-size: 14px;
     font-weight: 600;
-    color: #e2e8f0;
+    color: #e2e8f0c4;
     font-weight: 500;
     letter-spacing: .3px;
 }
@@ -439,9 +443,11 @@ td {
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #e2e8f0;
+    background: transparent;
     color: var(--primary-color);
+        color: #e2e8f0;
     display: flex;
+    border: 1px solid #06b5d4b4;
     align-items: center;
     justify-content: center;
     font-weight: 800;
