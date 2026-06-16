@@ -17,21 +17,45 @@
             <!--=========================================|| Sidebar Here ||======================================= -->
             <aside class="sidebar">
                 <div class="side-profile">
-                    <div class="d-flex gap-3 align-center">
+                    <div class="d-flex gap-3 top align-center">
                         <div class="side-avatar">RH</div>
                         <div>
                             <div class="fs-lg fw-bold">Rakib Hasan</div>
                             <p class=""> ID: CUS-00045</p>
                         </div>
                     </div>
-                    <div class="mt-2">
-                        <p>Phone: 017XXXXXXXX</p>
-                        <p>Email: rakib@example.com</p>
-                        <p>Address: Banasree Rampura</p>
+
+                    <!-- contact content -->
+                    <div class="profile-contact flex-column gap-3">
+                        <p class="d-flex align-center gap-3">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                            017XXXXXXXX
+                        </p>
+                        <p class="d-flex align-center gap-3">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2" />
+                                <path d="M2 6l10 7L22 6" />
+                            </svg>
+                            rakib@example.com
+                        </p>
+                        <p class="d-flex align-center gap-3">
+                            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            Banasree Rampura Dhaka
+                        </p>
                     </div>
                 </div>
+
                 <nav class="menu">
-                    <a class="active" href="#">
+                    <a class="" href="/customer/customer_dashboard.html">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M3 10.5L12 3l9 7.5" />
                             <path d="M5 10v10h14V10" />
@@ -40,7 +64,7 @@
                         <span>Dashboard</span>
                     </a>
 
-                    <a href="#">
+                    <a class="active" href="/customer/purchases.html">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M6 2l1.5 4h9L18 2" />
                             <path d="M3 6h18l-2 15H5L3 6z" />
@@ -50,14 +74,14 @@
                         <span>Purchases</span>
                     </a>
 
-                    <a href="#">
+                    <a href="/customer/rewards.html">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 2l2.9 6.1 6.7.9-4.8 4.7 1.1 6.6L12 17.2 6.1 20.3l1.1-6.6L2.4 9l6.7-.9L12 2z" />
                         </svg>
                         <span>Rewards</span>
                     </a>
 
-                    <a href="#">
+                    <a href="/customer/withdrawals.html">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 3v12" />
                             <path d="M7 10l5 5 5-5" />
@@ -78,12 +102,38 @@
             </aside>
 
             <main class="main">
+
+                <header class="topbar align-center">
+                    <div>
+                        <h1 class="">Customer Dashboard.</h1>
+                    </div>
+                    <div class="d-flex align-center gap-6">
+                        <select class="month-select">
+                            <option>Filter by Month</option>
+                            <option>January 2026</option>
+                            <option>February 2026</option>
+                            <option>March 2026</option>
+                            <option>April 2026</option>
+                            <option>May 2026</option>
+                            <option>June 2026</option>
+                        </select>
+                        <div class="profile d-flex  gap-2">
+                            <img src="https://lh3.googleusercontent.com/-owKu1iCCv1U/AAAAAAAAAAI/AAAAAAAAAAA/ALKGfkkoF57nnKwpNOdtH-5uYsJd1iv1fQ/photo.jpg?sz=46"
+                                class="profile-img" alt="">
+                            <div>
+                                <h5>Hi,</h5>
+                                <div class="name mt-1 text-center fw-medium">Tanvir</div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
                 <div class="topbar">
                     <h1 class="gradient-heading">Purchases</h1>
                 </div>
 
                 <div class="main-wrap pruchases-page">
-                    <div class=" pruch grid-3 gap-6">
+                    <div class=" pruch grid-3 gap-6 gap-lg-5">
                         <div class="card stat ">
                             <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -91,9 +141,9 @@
                                     <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
                                 </svg></div>
                             <span class="label">Total Purchases</span>
-                            <h2>৳ 85,500</h2>
+                            <h3>৳ 85,500</h3>
                         </div>
-                        <div class="card stat other-card">
+                        <div class="card stat ">
                             <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="3" y="4" width="18" height="16" rx="2"></rect>
@@ -102,9 +152,9 @@
                                     <path d="M16 4v4"></path>
                                 </svg></div>
                             <span class="label">Total Orders</span>
-                            <h2>5</h2>
+                            <h3>5</h3>
                         </div>
-                        <div class="card stat other-card">
+                        <div class="card stat ">
                             <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path
@@ -112,11 +162,11 @@
                                     </path>
                                 </svg></div>
                             <span class="label">Reward Earned</span>
-                            <h2>৳ 8,250</h2>
+                            <h3>৳ 8,250</h3>
                         </div>
                     </div>
 
-                    <div class="mt-6">
+                    <div class="mt-7">
                         <div class="card other-card ">
                             <span class="label">Purchases</span>
                             <h2 class="card-title">Purchase History</h2>
@@ -205,7 +255,7 @@
                                             <td>12 Apr 2026</td>
                                             <td>INV-00088</td>
                                             <td>Monthly Combo Pack</td>
-                                        <td>
+                                            <td>
                                                 <div class="amount-purchase">৳ 11,000</div>
                                             </td>
                                             <td>
@@ -235,8 +285,99 @@
                                                     </svg> 122</div>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>12 Apr 2026</td>
+                                            <td>INV-00088</td>
+                                            <td>Monthly Combo Pack</td>
+                                            <td>
+                                                <div class="amount-purchase">৳ 60,000</div>
+                                            </td>
+                                            <td>
+                                                <div class="amount-reward"><svg viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path
+                                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                                        </path>
+                                                    </svg> 12</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>12 Apr 2026</td>
+                                            <td>INV-00088</td>
+                                            <td>Monthly Combo Pack</td>
+                                            <td>
+                                                <div class="amount-purchase">৳ 11,000</div>
+                                            </td>
+                                            <td>
+                                                <div class="amount-reward"><svg viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path
+                                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                                        </path>
+                                                    </svg> 320</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>12 Apr 2026</td>
+                                            <td>INV-00088</td>
+                                            <td>Monthly Combo Pack</td>
+                                            <td>
+                                                <div class="amount-purchase">৳ 5,000</div>
+                                            </td>
+                                            <td>
+                                                <div class="amount-reward"><svg viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path
+                                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                                        </path>
+                                                    </svg> 122</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>12 Apr 2026</td>
+                                            <td>INV-00088</td>
+                                            <td>Monthly Combo Pack</td>
+                                            <td>
+                                                <div class="amount-purchase">৳ 5,000</div>
+                                            </td>
+                                            <td>
+                                                <div class="amount-reward"><svg viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path
+                                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                                        </path>
+                                                    </svg> 122</div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <!-- pagination here -->
+                            <div class="pagination mt-4">
+                                <button class="page-btn prev" disabled>
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M15 18l-6-6 6-6" />
+                                    </svg>
+                                </button>
+
+                                <button class="page-btn active">1</button>
+                                <button class="page-btn">2</button>
+                                <button class="page-btn">3</button>
+                                <span class="page-dots">...</span>
+                                <button class="page-btn">8</button>
+
+                                <button class="page-btn next">
+                                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 18l6-6-6-6" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>

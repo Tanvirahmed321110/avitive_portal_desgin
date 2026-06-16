@@ -150,6 +150,11 @@ body {
     opacity: .5;
 }
 
+.welcome-title{
+    color: var(--color-text-white);
+    opacity: .95;
+}
+
 .form-actions {
     display: flex;
     justify-content: space-between;
