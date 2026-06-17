@@ -263,7 +263,9 @@ td {
     height: calc(100dvh - 16px);
     border-radius: 24px;
     margin-right: 0;
-    display: flex ;flex-direction: column;justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -870,7 +872,7 @@ header.topbar {
 
 @media(max-width:768px) {
     .main {
-        padding: 20px
+        padding: 16px
     }
 
     .topbar {
@@ -899,5 +901,165 @@ header.topbar {
 
     .actions button {
         width: 100%
+    }
+
+    .main .main-wrap {
+        padding: 16px 0;
+    }
+
+    header {
+        gap: 0px;
+    }
+
+    header.topbar {
+        padding: 12px 12px;
+        margin: 0px 0px;
+        border-radius: var(--radius-lg);
+        margin-bottom: 16px;
+    }
+
+    header h1 {
+        display: none;
+        font-size: var(--fs-md);
+    }
+
+    header .menu-toggle {
+        border: none;
+        background: transparent;
+        padding: 8px;
+        cursor: pointer;
+        color: #111827;
+        /* dark color */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card {
+        border-radius: var(--radius-xl);
+        padding: 12px 12px;
+    }
+
+    .card.other-card {
+        padding: 16px;
+    }
+
+    .card h3 {
+        font-size: var(--fs-md);
+        margin-top: 8px;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+        background: rgba(79, 70, 229, .10);
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        margin-bottom: 14px;
+    }
+
+    .card svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .card::before {
+        width: 104px;
+        height: 100px;
+    }
+
+    .reward {
+        padding: 16px;
+    }
+
+    .table-sms.main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .month-select {
+        height: 40px;
+        min-width: 140px;
+        border: 1px solid #dfe6fd;
+        border-radius: 32px;
+        background: #fff;
+        color: var(--color-text-primary);
+        padding: 0 12px;
+        font-size: 13px;
+        font-weight: 600;
+        outline: 0;
+        font-family: inherit;
+        background: #eef2ff;
+    }
+
+    .table-wrap svg {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+    }
+
+    th {
+        background: #EDECFC;
+        color: var(--text-muted);
+        text-align: left;
+        font-size: 13px;
+        padding: 14px 12px;
+    }
+
+    /* sidebar  */
+    .sidebar {
+        height: auto;
+        position: relative;
+        display: none;
+    }
+
+    .topbar {
+        padding: 12px 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .pruchases-page th {
+        font-size: 13px;
+    }
+
+    .pruchases-page td {
+        font-size: 12.5px;
+    }
+
+    .card-title {
+        font-size: var(--fs-lg);
+    }
+
+    .status-badge {
+        border: 1px solid var(--border-color);
+        position: absolute;
+        top: -16px;
+        right: -4px;
+    }
+
+    .reward-page .date {
+        white-space: nowrap;
+    }
+
+    .timeline-item .flex-column {
+        margin-top: 8px;
+        gap: 0;
+        flex-direction: row;
+    }
+
+    .reward-page .timeline-amount {
+        font-size: 14px;
+    }
+
+    .page-btn {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 8px;
+        font-size: 13px;
+        border-radius: 6px;
     }
 }
