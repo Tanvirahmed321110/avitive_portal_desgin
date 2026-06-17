@@ -2,8 +2,8 @@ header .profile-img {
     width: 48px;
     height: 48px;
     border-radius: var(--radius-round);
-    border: 3px solid #dddafa;
-    padding: 2px;
+    border: 5px solid #EDEBFC;
+    /* padding: 2px; */
 }
 
 header {
@@ -13,7 +13,8 @@ header {
     align-items: center;
     background-color: white;
     padding: 12px 32px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+    box-shadow: 0 10px 30px rgba(91, 79, 233, 0.08);
     position: sticky;
     top: 0;
     z-index: 2;
@@ -56,11 +57,12 @@ button {
 .card {
     background: var(--surface-color);
     /* border: 1px solid rgba(203, 213, 225, .82); */
-    border-radius: var(--radius-xl);
+    border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, .05);
     transition: var(--transition);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, .08)
+    /* box-shadow: 0 10px 25px rgba(15, 23, 42, .05);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, .08); */
+    box-shadow: 0 10px 30px rgba(91, 79, 233, 0.08);
 }
 
 .card:hover {
@@ -326,8 +328,8 @@ td {
 }
 
 .menu a {
-    padding: 11px 14px;
-    border-radius: 10px;
+    padding: 12px 12px;
+    border-radius: 12px;
     color: #fff;
     font-size: 14px;
     font-weight: 400;
@@ -339,7 +341,7 @@ td {
 
 .menu a.active,
 .menu a:hover {
-    background: rgba(255, 255, 255, .15);
+    background: rgba(255, 255, 255, .15);    background: rgba(255, 255, 255, 0.18);
     opacity: .9;
 }
 
@@ -353,11 +355,10 @@ td {
 }
 
 .menu a svg {
-    width: 24px;
-    height: 24px;
-    background-color: #e0f2fe51;
-    border-radius: 50%;
-    padding: 4px;
+    width: 18px;
+    height: 18px;
+    /* background-color: #e0f2fe51; */
+    /* border-radius: 50%; */
     transition: .4s ease-in-out;
 }
 
@@ -378,7 +379,10 @@ td {
     font-size: 22px;
     color: #1b1a1e;
 }
-
+.card .success{
+    color: var(--success-text);
+    font-weight: 700;
+}
 
 .card {
     position: relative;
@@ -404,8 +408,8 @@ td {
 }
 
 .card svg {
-    width: 22px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 /* pagination */
@@ -488,13 +492,36 @@ td {
 }
 
 .reward {
-    background: linear-gradient(233deg, var(--primary-color), #27277c);
+    background: linear-gradient(233deg, #8585c4fc,var(--primary-color), #535382dd);
     color: #fff;
-    border-radius: var(--radius-xl);
+    border-radius: 20px;
     padding: 24px;
     box-shadow: 0 16px 34px rgba(79, 70, 229, .24)
 }
+/* .reward {
+  background: linear-gradient(233deg, rgba(129,129,169,.45), rgba(79,70,229,.35), rgba(146,146,205,.4));
+  backdrop-filter: blur(20px) ;
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  padding: 24px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 16px 34px rgba(79,70,229,.24),
+    inset 0 1px 0 rgba(255,255,255,.35);
+    z-index: 2;
+}
 
+.reward::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.262), transparent 60%);
+  pointer-events:none;
+  z-index: -1;
+} */
 
 
 
@@ -557,10 +584,10 @@ td {
     background: #e2e8f0;
     color: var(--primary-color);
     border: 0;
-    border-radius: var(--radius-md);
-    padding: 12px 15px;
+    border-radius:12px;
+    padding: 12px 16px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -694,7 +721,7 @@ header.topbar {
     padding: 14px 20px;
     margin: 16px 32px;
     margin-bottom: 0;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-xxl);
 }
 
 .card.other-card::before {
