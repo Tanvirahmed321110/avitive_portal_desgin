@@ -1,0 +1,12 @@
+.card::before{
+        content: '';
+    position: absolute;
+    top: -34px;
+    right: -34px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: var(--background-light);
+    opacity: 0.55;
+    transform: unset;
+}
