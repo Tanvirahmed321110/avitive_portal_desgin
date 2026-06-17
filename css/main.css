@@ -1,5 +1,5 @@
 /* Font Awesome Icon CDN */
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 :root {
     /* =========================
        Variable Here
@@ -16,7 +16,7 @@
 
     --primary-color: #4f46e5;
     --primary-hover: #4338ca;
-    --background-color: #f1f5f9;
+    --background-color: #F3F2FA;
     --surface-color: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
@@ -136,7 +136,7 @@
     --fw-600: 600;
     --fw-700: 700;
 
-    --font-inter: "Inter";
+    --font-popins: 'Poppins', sans-serif;;
 
 
     /*=============//  Gradient Shade  //=============*/
@@ -198,7 +198,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+    font-family: 'Inter', sans-serif;
 }
 /*________  Tag Style  ________ */
 html {
@@ -230,6 +231,7 @@ h6 {
     font-weight: var(--fw-600);
     font-family: inherit;
     color: var(--color-text-primary);
+    font-family: var(--font-popins);
 }
 
 h1 {

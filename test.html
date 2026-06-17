@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Founding Member Dashboard</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+        <style>
+            :root {
+                --primary: #5B4FE9;
+                --primary-dark: #4634C9;
+                --primary-light: #EDEBFC;
+                --bg: #F3F2FA;
+                --white: #FFFFFF;
+                --text-dark: #1B1A2E;
+                --text-gray: #8C8AA3;
+                --success: #1FAA59;
+                --success-bg: #E4F7EC;
+                --warning: #D98E04;
+                --warning-bg: #FDF1DC;
+                --danger: #E0483E;
+                --danger-bg: #FCEAE8;
+                --shadow: 0 10px 30px rgba(91, 79, 233, 0.08);
+                --radius-lg: 22px;
+                --radius-md: 14px;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background: var(--bg);
+                color: var(--text-dark);
+                display: flex;
+                min-height: 100vh;
+            }
+
+            /* ---------- SIDEBAR ---------- */
+            .sidebar {
+                width: 280px;
+                flex-shrink: 0;
+                background: linear-gradient(165deg, #675BEF 0%, #4634C9 100%);
+                color: #fff;
+                padding: 26px 20px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .profile-card {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                padding: 16px;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 22px;
+            }
+
+            .avatar-circle {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: #fff;
+                color: var(--primary-dark);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 15px;
+                flex-shrink: 0;
+            }
+
+            .profile-name {
+                font-weight: 700;
+                font-size: 15px;
+            }
+
+            .profile-id {
+                font-size: 11.5px;
+                opacity: 0.75;
+                margin-top: 2px;
+            }
+
+            .contact-list {
+                display: flex;
+                flex-direction: column;
+                gap: 13px;
+                padding: 0 6px;
+                margin-bottom: 26px;
+            }
+
+            .contact-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 12.5px;
+                opacity: 0.92;
+            }
+
+            .contact-icon {
+                width: 28px;
+                height: 28px;
+                border-radius: 8px;
+                flex-shrink: 0;
+                background: rgba(255, 255, 255, 0.12);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .contact-icon svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                flex: 1;
+            }
+
+            .nav-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 14px;
+                border-radius: 12px;
+                font-size: 13.8px;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.82);
+                cursor: pointer;
+                transition: background .15s ease;
+            }
+
+            .nav-item:hover {
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .nav-item.active {
+                background: rgba(255, 255, 255, 0.18);
+                color: #fff;
+                font-weight: 600;
+            }
+
+            .nav-item svg {
+                width: 18px;
+                height: 18px;
+                flex-shrink: 0;
+            }
+
+            .powered-badge {
+                margin-top: 18px;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.12);
+                padding: 10px;
+                border-radius: 30px;
+                font-size: 10.5px;
+                letter-spacing: 0.5px;
+                font-weight: 700;
+                color: #FFCE6B;
+            }
+
+            /* ---------- MAIN ---------- */
+            .main {
+                flex: 1;
+                padding: 30px 34px;
+                display: flex;
+                flex-direction: column;
+                gap: 26px;
+                min-width: 0;
+            }
+
+            .topbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .page-title {
+                font-family: 'Poppins', sans-serif;
+                font-size: 26px;
+                font-weight: 700;
+            }
+
+            .topbar-right {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+            }
+
+            .filter-select {
+                background: #fff;
+                border: 1px solid #E4E2F1;
+                border-radius: 12px;
+                padding: 11px 16px;
+                font-size: 13.5px;
+                font-family: 'Inter';
+                color: var(--text-dark);
+                cursor: pointer;
+                outline: none;
+            }
+
+            .user-chip {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .user-chip .avatar-circle {
+                background: var(--primary-light);
+                color: var(--primary);
+                width: 42px;
+                height: 42px;
+                font-size: 13px;
+            }
+
+            .user-chip .greeting {
+                font-size: 13px;
+                color: var(--text-gray);
+            }
+
+            .user-chip .greeting b {
+                display: block;
+                color: var(--text-dark);
+                font-size: 14px;
+            }
+
+            .section-label {
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--text-gray);
+                text-transform: uppercase;
+                letter-spacing: 0.6px;
+                margin-bottom: -8px;
+            }
+
+            /* ---------- STAT CARDS ---------- */
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+                gap: 18px;
+            }
+
+            .stat-card {
+                background: #fff;
+                border-radius: 20px;
+                padding: 22px;
+                box-shadow: var(--shadow);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .stat-card::after {
+                content: '';
+                position: absolute;
+                top: -34px;
+                right: -34px;
+                width: 110px;
+                height: 110px;
+                border-radius: 50%;
+                background: var(--primary-light);
+                opacity: 0.55;
+            }
+
+            .stat-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                background: var(--primary-light);
+                color: var(--primary);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 16px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .stat-icon svg {
+                width: 21px;
+                height: 21px;
+            }
+
+            .stat-icon.success {
+                background: var(--success-bg);
+                color: var(--success);
+            }
+
+            .stat-icon.danger {
+                background: var(--danger-bg);
+                color: var(--danger);
+            }
+
+            .stat-tag {
+                display: inline-block;
+                background: var(--primary-light);
+                color: var(--primary);
+                font-size: 11.5px;
+                font-weight: 600;
+                padding: 4px 11px;
+                border-radius: 20px;
+                margin-bottom: 10px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .stat-value {
+                font-family: 'Poppins', sans-serif;
+                font-size: 22px;
+                font-weight: 700;
+                position: relative;
+                z-index: 1;
+            }
+
+            .stat-value.success {
+                color: var(--success);
+            }
+
+            .stat-value.danger {
+                color: var(--danger);
+            }
+
+            /* ---------- BOTTOM GRID ---------- */
+            .bottom-grid {
+                display: grid;
+                grid-template-columns: 1.55fr 1fr;
+                gap: 22px;
+                align-items: stretch;
+            }
+
+            .distribution-panel {
+                background: linear-gradient(135deg, #6E62F5 0%, #4634C9 100%);
+                border-radius: 24px;
+                padding: 34px;
+                color: #fff;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .panel-badge {
+                align-self: flex-start;
+                background: rgba(255, 255, 255, 0.18);
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 11.5px;
+                font-weight: 600;
+                margin-bottom: 18px;
+            }
+
+            .panel-title {
+                font-family: 'Poppins', sans-serif;
+                font-size: 25px;
+                font-weight: 700;
+                margin-bottom: 12px;
+            }
+
+            .panel-desc {
+                font-size: 13.8px;
+                line-height: 1.6;
+                opacity: 0.85;
+                margin-bottom: 22px;
+                max-width: 480px;
+            }
+
+            .rule-list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 26px;
+            }
+
+            .rule-item {
+                display: flex;
+                align-items: center;
+                gap: 13px;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 13px 16px;
+                border-radius: 13px;
+                font-size: 13.5px;
+                font-weight: 500;
+            }
+
+            .rule-check {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.22);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .rule-check svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .panel-actions {
+                display: flex;
+                gap: 13px;
+                margin-top: auto;
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                padding: 13px 22px;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 13.5px;
+                border: none;
+                cursor: pointer;
+                font-family: 'Inter';
+            }
+
+            .btn-primary {
+                background: #fff;
+                color: var(--primary-dark);
+            }
+
+            .btn-outline {
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                border: 1px solid rgba(255, 255, 255, 0.4);
+            }
+
+            .history-panel {
+                background: #fff;
+                border-radius: 24px;
+                padding: 28px;
+                box-shadow: var(--shadow);
+                display: flex;
+                flex-direction: column;
+            }
+
+            .history-badge {
+                align-self: flex-start;
+                background: var(--primary-light);
+                color: var(--primary);
+                padding: 5px 14px;
+                border-radius: 20px;
+                font-size: 11.5px;
+                font-weight: 600;
+                margin-bottom: 16px;
+            }
+
+            .history-title {
+                font-family: 'Poppins', sans-serif;
+                font-size: 19px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+
+            .timeline {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .timeline-item {
+                position: relative;
+                padding-left: 20px;
+                border-left: 2px solid #ECEBF7;
+                padding-bottom: 20px;
+            }
+
+            .timeline-item:last-child {
+                border-color: transparent;
+                padding-bottom: 0;
+            }
+
+            .timeline-dot {
+                position: absolute;
+                left: -5px;
+                top: 3px;
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: var(--primary);
+            }
+
+            .timeline-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .timeline-title {
+                font-weight: 700;
+                font-size: 14px;
+            }
+
+            .timeline-amount {
+                font-weight: 700;
+                color: var(--success);
+                font-size: 14px;
+                white-space: nowrap;
+            }
+
+            .timeline-sub {
+                font-size: 12px;
+                color: var(--text-gray);
+                margin: 4px 0 9px;
+            }
+
+            .status-pill {
+                display: inline-block;
+                font-size: 11px;
+                font-weight: 700;
+                padding: 4px 12px;
+                border-radius: 20px;
+            }
+
+            .status-pending {
+                background: var(--warning-bg);
+                color: var(--warning);
+            }
+
+            .status-paid {
+                background: var(--primary-light);
+                color: var(--primary);
+            }
+
+            .status-completed {
+                background: var(--success-bg);
+                color: var(--success);
+            }
+
+            @media (max-width:1100px) {
+                .bottom-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width:780px) {
+                body {
+                    flex-direction: column;
+                }
+
+                .sidebar {
+                    width: 100%;
+                    flex-direction: row;
+                    align-items: center;
+                    overflow-x: auto;
+                }
+
+                .profile-card,
+                .contact-list {
+                    display: none;
+                }
+
+                nav {
+                    flex-direction: row;
+                    flex: none;
+                }
+
+                .powered-badge {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="profile-card">
+                <div class="avatar-circle">IC</div>
+                <div>
+                    <div class="profile-name">Imran Chowdhury</div>
+                    <div class="profile-id">ID: FM-0007 &middot; Founding Member</div>
+                </div>
+            </div>
+
+            <div class="contact-list">
+                <div class="contact-item">
+                    <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.9v2a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 1H6a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 3a2 2 0 0 1-.5 2.1L7 9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .7A2 2 0 0 1 22 16.9Z" />
+                        </svg></span>
+                    017XXXXXXXX
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="M22 6l-10 7L2 6" />
+                        </svg></span>
+                    imran@example.com
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg></span>
+                    Gulshan, Dhaka
+                </div>
+            </div>
+
+            <nav>
+                <div class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+                        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+                        <rect x="14" y="14" width="7" height="7" rx="1.5" />
+                    </svg>
+                    Dashboard
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="7" width="18" height="12" rx="2" />
+                        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                    </svg>
+                    Investments
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 8v8M9 13l3 3 3-3" />
+                    </svg>
+                    Distributions
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="5" y1="20" x2="5" y2="11" />
+                        <line x1="12" y1="20" x2="12" y2="6" />
+                        <line x1="19" y1="20" x2="19" y2="14" />
+                    </svg>
+                    Reports
+                </div>
+                <div class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 17l5-5-5-5" />
+                        <line x1="20" y1="12" x2="9" y2="12" />
+                        <path d="M13 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7" />
+                    </svg>
+                    Logout
+                </div>
+            </nav>
+
+            <div class="powered-badge">POWERED BY XSELLENCEBDLTD</div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <div class="topbar">
+                <div class="page-title">Founding Member Dashboard.</div>
+                <div class="topbar-right">
+                    <select class="filter-select">
+                        <option>Filter by Month</option>
+                        <option>This Month</option>
+                        <option>Last Month</option>
+                        <option>This Year</option>
+                    </select>
+                    <div class="user-chip">
+                        <div class="avatar-circle">IC</div>
+                        <div class="greeting">Hi,<b>Imran</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal investment snapshot -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2H3V7Z" />
+                            <path d="M3 9h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
+                            <circle cx="16.5" cy="14" r="1.1" fill="currentColor" stroke="none" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Total Investment</div>
+                    <div class="stat-value">৳ 45,00,000</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 17l5-5 4 4 7-8" />
+                            <path d="M14 7h5v5" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Net Profit</div>
+                    <div class="stat-value success">৳ 21,00,000</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="19" x2="19" y2="5" />
+                            <circle cx="7.5" cy="7.5" r="2.3" />
+                            <circle cx="16.5" cy="16.5" r="2.3" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Profit Percentage</div>
+                    <div class="stat-value">25.5%</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="2" />
+                            <circle cx="12" cy="12" r="3" />
+                            <line x1="6" y1="9" x2="6" y2="9.01" />
+                            <line x1="18" y1="15" x2="18" y2="15.01" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Total Payments Received</div>
+                    <div class="stat-value">৳ 12,50,000</div>
+                </div>
+            </div>
+
+            <!-- Business-wide overview -->
+            <div class="section-label">Business Overview</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 7h12l1 13H5L6 7Z" />
+                            <path d="M9 7a3 3 0 1 1 6 0" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Total Sales</div>
+                    <div class="stat-value">৳ 82,50,000</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon danger">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 7l5 5 4-4 7 8" />
+                            <path d="M14 17h5v-5" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Total Expenses</div>
+                    <div class="stat-value danger">৳ 61,50,000</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="6" cy="12" r="2.4" />
+                            <circle cx="17" cy="6" r="2.4" />
+                            <circle cx="17" cy="18" r="2.4" />
+                            <line x1="8.1" y1="10.7" x2="14.9" y2="7.3" />
+                            <line x1="8.1" y1="13.3" x2="14.9" y2="16.7" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Shared with Investors (80%)</div>
+                    <div class="stat-value">৳ 16,80,000</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="8" r="3" />
+                            <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6" />
+                            <circle cx="17.2" cy="9" r="2.2" />
+                            <path d="M15.6 14.1c2.6.4 4.5 2.4 4.5 5.9" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Total Customers</div>
+                    <div class="stat-value">1,240</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 21V9l8-5 8 5v12" />
+                            <path d="M9 21v-6h6v6" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Outlet Count</div>
+                    <div class="stat-value">18</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="10" cy="8" r="3.4" />
+                            <path d="M3 20c0-3.8 3.1-6.5 7-6.5s7 2.7 7 6.5" />
+                            <path d="M16.3 10.6l1.7 1.7 3-3.5" />
+                        </svg>
+                    </div>
+                    <div class="stat-tag">Investor Count</div>
+                    <div class="stat-value">32</div>
+                </div>
+            </div>
+
+            <!-- Bottom panels -->
+            <div class="bottom-grid">
+                <div class="distribution-panel">
+                    <div class="panel-badge">Profit Sharing</div>
+                    <div class="panel-title">Monthly Profit Distribution</div>
+                    <div class="panel-desc">Net profit is calculated and distributed every month. Founding Members and
+                        General Investors are paid out automatically based on their fixed share allocation.</div>
+
+                    <div class="rule-list">
+                        <div class="rule-item">
+                            <span class="rule-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 12l5 5L20 6" />
+                                </svg></span>
+                            Distributed monthly based on verified net profit
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 12l5 5L20 6" />
+                                </svg></span>
+                            General Investors receive an 80% share allocation
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 12l5 5L20 6" />
+                                </svg></span>
+                            Founding Members receive the remaining 20% share
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 12l5 5L20 6" />
+                                </svg></span>
+                            SMS &amp; email notification sent for every payout
+                        </div>
+                    </div>
+
+                    <div class="panel-actions">
+                        <button class="btn btn-primary">View Investment Report</button>
+                        <button class="btn btn-outline">Download Statement</button>
+                    </div>
+                </div>
+
+                <div class="history-panel">
+                    <div class="history-badge">History</div>
+                    <div class="history-title">Distribution Timeline</div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-head">
+                                <div class="timeline-title">Profit Distribution Requested</div>
+                                <div class="timeline-amount">৳ 84,000</div>
+                            </div>
+                            <div class="timeline-sub">Requested on 05 June 2026</div>
+                            <span class="status-pill status-pending">Pending</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-head">
+                                <div class="timeline-title">Payment Received</div>
+                                <div class="timeline-amount">৳ 1,56,000</div>
+                            </div>
+                            <div class="timeline-sub">Bank transfer completed successfully</div>
+                            <span class="status-pill status-paid">Paid</span>
+                        </div>
+
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-head">
+                                <div class="timeline-title">Bonus Profit Credited</div>
+                                <div class="timeline-amount">৳ 45,000</div>
+                            </div>
+                            <div class="timeline-sub">Added to total investment value</div>
+                            <span class="status-pill status-completed">Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </body>
+
+</html>
