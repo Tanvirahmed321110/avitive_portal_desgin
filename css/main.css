@@ -1,5 +1,6 @@
 /* Font Awesome Icon CDN */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
     /* =========================
        Variable Here
@@ -17,12 +18,13 @@
     --primary-color: #4f46e5;
     --primary-hover: #4338ca;
     --background-color: #F3F2FA;
-    --background-light:#EDEBFC;
+    --background-light: #EDEBFC;
+    --success-bg: #E4F7EC;
     --surface-color: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
     --border-color: #cbd5e1;
-    --success-text:#16a34a;
+    --success-text: #16a34a;
     --radius-md: 10px;
     --radius-xl: 20px;
     --transition: all 0.3s ease;
@@ -137,7 +139,8 @@
     --fw-600: 600;
     --fw-700: 700;
 
-    --font-popins: 'Poppins', sans-serif;;
+    --font-popins: 'Poppins', sans-serif;
+    ;
 
 
     /*=============//  Gradient Shade  //=============*/
@@ -202,6 +205,7 @@
     /* font-family: sans-serif; */
     font-family: 'Inter', sans-serif;
 }
+
 /*________  Tag Style  ________ */
 html {
     scroll-behavior: smooth;
