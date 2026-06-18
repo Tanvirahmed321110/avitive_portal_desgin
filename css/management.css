@@ -82,7 +82,7 @@ table {
 }
 
 .sidebar {
-    background: linear-gradient(280deg, var(--primary-color), rgb(3, 110, 3));
+    background: linear-gradient(20deg,green, var(--primary-color), rgb(3, 110, 3));
     color: #fff;
     padding: 12px 12px;
     position: sticky;
