@@ -1,3 +1,10 @@
+:root{
+    --background-color:#dff9eaae;
+}
+
+body{
+    background-color: var(--background-color);
+}
 .card::before{
         content: '';
     position: absolute;

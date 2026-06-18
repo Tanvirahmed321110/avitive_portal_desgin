@@ -557,6 +557,11 @@ td {
     border: 1px solid var(--success-text); */
     background-color: white;
 }
+.reward .label{
+    background-color: var(--success-text);
+    color:#fff;
+    opacity: .85;
+}
 
 /* .reward {
   background: linear-gradient(233deg, rgba(129,129,169,.45), rgba(79,70,229,.35), rgba(146,146,205,.4));
