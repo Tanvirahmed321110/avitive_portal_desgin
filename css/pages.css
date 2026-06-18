@@ -1013,6 +1013,14 @@ header.topbar {
 }
 
 @media(max-width:768px) {
+
+    header .right{
+        width: 100%;
+        justify-content: space-between;
+    }
+    header .right .month-select{
+        max-width: 190px;
+    }
     .main {
         padding: 16px
     }

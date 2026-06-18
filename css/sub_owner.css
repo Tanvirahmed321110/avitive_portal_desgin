@@ -1,10 +1,11 @@
-:root{
-    --background-color:#e6f7ec;
+:root {
+    --background-color: #eefaf3;
 }
 
-body{
+body {
     background-color: var(--background-color);
 }
+
 .card::after {
     content: '';
     top: 10px;
@@ -75,9 +76,9 @@ body{
             maroon 48%,
             #0f766e 100%);
     background: linear-gradient(250deg,
-            #127637 12%,
+            #106730fc 48%,
             #166534 24%,
-            #0d642d 120%);
+            #0d642d 46%);
 }
 
 .card.other-card.active {
@@ -286,5 +287,23 @@ body{
 
     100% {
         transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+
+
+
+
+
+
+@media(max-width:768px) {
+    .card::after {
+        top: 6px;
+        left: 6px;
+    }
+
+    .card::before {
+        bottom: 6px;
+        right: 6px;
     }
 }
