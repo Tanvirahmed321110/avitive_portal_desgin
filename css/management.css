@@ -10,3 +10,72 @@
     opacity: 0.55;
     transform: unset;
 }
+
+.table-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.table-wrap {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.table-card th {
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 16px 14px;
+    border-bottom: 1px solid #EEEDF7;
+}
+
+.table-card td {
+    padding: 14px 14px;
+    font-size: 13.5px;
+    border-bottom: 1px solid #F3F2FA;
+    color: var(--color-text-primary);
+}
+
+.table-card .branch-profit {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.table-card .status-completed {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.table-card .status-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.table-card .status-loss {
+    background: #FCEAE8;
+    color: var(--btn-danger-bg);
+}
+
+.table-card .branch-loss {
+        color: var(--btn-danger-bg);
+    font-weight: 600;
+}
+
+.table-card .branch-profit {
+    color: var(--success-text);
+    font-weight: 600;
+}
