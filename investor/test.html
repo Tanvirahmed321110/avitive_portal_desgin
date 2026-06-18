@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>General Investor Dashboard</title>
+
+        <style>
+            :root {
+                --primary-color: #4f46e5;
+                --primary-hover: #4338ca;
+                --background-color: #e8f3ef;
+                --surface-color: #ffffff;
+                --text-main: #1e293b;
+                --text-muted: #64748b;
+                --border-color: #dbe3ea;
+                --radius-md: 12px;
+                --radius-xl: 24px;
+                --transition: all 0.3s ease;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+
+            body {
+                background: var(--background-color);
+                color: var(--text-main);
+            }
+
+            .dashboard-wrapper {
+                display: flex;
+                min-height: 100vh;
+                gap: 22px;
+                padding: 8px;
+            }
+
+            /* ================= Sidebar ================= */
+            .sidebar {
+                width: 310px;
+                background: linear-gradient(180deg, #0d8b18 0%, #4355da 48%, #0d7c2d 100%);
+                border-radius: 28px;
+                padding: 18px 16px;
+                display: flex;
+                flex-direction: column;
+                color: #fff;
+                flex-shrink: 0;
+            }
+
+            .profile-card {
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.1));
+                border-radius: 24px;
+                padding: 18px;
+                margin-bottom: 18px;
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+            }
+
+            .profile-top {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 12px;
+            }
+
+            .avatar {
+                width: 58px;
+                height: 58px;
+                border-radius: 50%;
+                background: #f4f4f5;
+                color: var(--primary-color);
+                font-weight: 800;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 22px;
+                flex-shrink: 0;
+            }
+
+            .profile-info h3 {
+                font-size: 17px;
+                line-height: 1.2;
+                margin-bottom: 2px;
+            }
+
+            .profile-info p {
+                font-size: 12px;
+                opacity: 0.9;
+                line-height: 1.4;
+            }
+
+            .investor-badge {
+                display: inline-block;
+                margin-top: 8px;
+                background: rgba(255, 255, 255, 0.16);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                padding: 7px 12px;
+                border-radius: 999px;
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .contact-list {
+                margin-top: 16px;
+                display: grid;
+                gap: 10px;
+            }
+
+            .contact-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: #f8fafc;
+                font-size: 13px;
+            }
+
+            .contact-icon {
+                width: 34px;
+                height: 34px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.14);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .contact-icon svg {
+                width: 17px;
+                height: 17px;
+                stroke: #ffffff;
+            }
+
+            .menu {
+                margin-top: auto;
+                display: grid;
+                gap: 10px;
+            }
+
+            .menu a {
+                text-decoration: none;
+                color: rgba(255, 255, 255, 0.88);
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 14px 14px;
+                border-radius: 14px;
+                font-size: 15px;
+                font-weight: 600;
+                transition: var(--transition);
+            }
+
+            .menu a svg {
+                width: 18px;
+                height: 18px;
+                stroke: currentColor;
+                flex-shrink: 0;
+            }
+
+            .menu a.active,
+            .menu a:hover {
+                background: rgba(255, 255, 255, 0.16);
+                color: #ffffff;
+            }
+
+            .powered-by {
+                margin-top: 16px;
+                background: rgba(255, 255, 255, 0.10);
+                border-radius: 18px;
+                text-align: center;
+                padding: 12px 14px;
+                font-size: 13px;
+                font-weight: 800;
+                color: #ffe66d;
+            }
+
+            /* ================= Main ================= */
+            .main-content {
+                flex: 1;
+                padding-right: 4px;
+            }
+
+            .top-header {
+                background: var(--surface-color);
+                border-radius: 24px;
+                padding: 18px 22px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 22px;
+            }
+
+            .top-header h1 {
+                font-size: 26px;
+                font-weight: 800;
+                margin-bottom: 6px;
+            }
+
+            .top-header p {
+                font-size: 14px;
+                color: var(--text-muted);
+            }
+
+            .top-actions {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .filter-select {
+                height: 46px;
+                min-width: 220px;
+                border: 1px solid #dadcf5;
+                border-radius: 16px;
+                padding: 0 14px;
+                background: #fff;
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--text-main);
+                outline: none;
+            }
+
+            .mini-user {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding-left: 16px;
+                border-left: 2px solid #eef2f7;
+            }
+
+            .mini-user-avatar {
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                background: #f3f4f6;
+                border: 3px solid #7367f0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                color: var(--primary-color);
+            }
+
+            .mini-user-text small {
+                display: block;
+                color: var(--text-muted);
+                font-size: 12px;
+            }
+
+            .mini-user-text strong {
+                color: #16a34a;
+            }
+
+            /* ============== Cards ============== */
+            .card-grid-4 {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+                margin-bottom: 22px;
+            }
+
+            .card-grid-6 {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 18px;
+                margin-bottom: 22px;
+            }
+
+            .dash-card {
+                background: #fff;
+                border-radius: 26px;
+                padding: 20px 20px 18px;
+                position: relative;
+                overflow: hidden;
+                min-height: 170px;
+            }
+
+            .dash-card::after {
+                content: "";
+                position: absolute;
+                top: -35px;
+                right: -35px;
+                width: 105px;
+                height: 105px;
+                background: #f0eef8;
+                border-radius: 50%;
+            }
+
+            .card-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 14px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .card-icon svg {
+                width: 22px;
+                height: 22px;
+                stroke-width: 2;
+            }
+
+            .icon-purple {
+                background: #ece9ff;
+                color: #5b52f3;
+            }
+
+            .icon-green {
+                background: #def4e6;
+                color: #16a34a;
+            }
+
+            .icon-blue {
+                background: #e2edff;
+                color: #2563eb;
+            }
+
+            .icon-orange {
+                background: #fff0de;
+                color: #f59e0b;
+            }
+
+            .icon-red {
+                background: #ffe4e4;
+                color: #ef4444;
+            }
+
+            .card-tag {
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 999px;
+                background: #ece9ff;
+                color: #5b52f3;
+                font-size: 12px;
+                font-weight: 700;
+                margin-bottom: 12px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .dash-card h3 {
+                font-size: 15px;
+                font-weight: 700;
+                line-height: 1.45;
+                margin-bottom: 12px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .card-value {
+                font-size: 24px;
+                font-weight: 900;
+                line-height: 1.2;
+                margin-bottom: 10px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .card-muted {
+                font-size: 13px;
+                color: var(--text-muted);
+                position: relative;
+                z-index: 1;
+            }
+
+            .green-text {
+                color: #16a34a;
+            }
+
+            .red-text {
+                color: #ef4444;
+            }
+
+            .status-pill {
+                display: inline-block;
+                padding: 6px 12px;
+                border-radius: 12px;
+                font-size: 12px;
+                font-weight: 700;
+                margin-top: 4px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .status-green {
+                background: #def4e6;
+                color: #16a34a;
+            }
+
+            .status-blue {
+                background: #e3efff;
+                color: #2563eb;
+            }
+
+            .status-orange {
+                background: #fff0de;
+                color: #f97316;
+            }
+
+            .status-red {
+                background: #ffe2e2;
+                color: #ef4444;
+            }
+
+            .status-purple {
+                background: #ece9ff;
+                color: #5b52f3;
+            }
+
+            .section-title {
+                font-size: 15px;
+                font-weight: 900;
+                color: #7c86a4;
+                margin: 4px 0 14px;
+                text-transform: uppercase;
+            }
+
+            /* ============== Bottom Info Panels ============== */
+            .info-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
+            }
+
+            .info-panel {
+                background: rgba(255, 255, 255, 0.66);
+                border: 1px solid #eef0f4;
+                border-radius: 28px;
+                padding: 24px;
+                min-height: 255px;
+            }
+
+            .panel-head {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 18px;
+            }
+
+            .panel-icon {
+                width: 58px;
+                height: 58px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+            }
+
+            .panel-icon svg {
+                width: 28px;
+                height: 28px;
+                stroke-width: 2;
+            }
+
+            .panel-blue .panel-icon {
+                background: #e2edff;
+                color: #2563eb;
+            }
+
+            .panel-green .panel-icon {
+                background: #def4e6;
+                color: #16a34a;
+            }
+
+            .panel-purple .panel-icon {
+                background: #ece9ff;
+                color: #6d4cff;
+            }
+
+            .panel-title h4 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .underline {
+                width: 58px;
+                height: 3px;
+                border-radius: 999px;
+            }
+
+            .blue-line {
+                background: #2563eb;
+            }
+
+            .green-line {
+                background: #16a34a;
+            }
+
+            .purple-line {
+                background: #6d4cff;
+            }
+
+            .bullet-list {
+                display: grid;
+                gap: 14px;
+                margin-top: 20px;
+            }
+
+            .bullet-item {
+                display: flex;
+                gap: 12px;
+                font-size: 16px;
+                line-height: 1.6;
+                color: #334155;
+            }
+
+            .bullet-dot {
+                width: 22px;
+                height: 22px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 2px;
+                flex-shrink: 0;
+                border: 2px solid currentColor;
+                font-size: 12px;
+                font-weight: 900;
+            }
+
+            .text-blue {
+                color: #2563eb;
+            }
+
+            .text-green {
+                color: #16a34a;
+            }
+
+            .text-purple {
+                color: #6d4cff;
+            }
+
+            /* ================= Responsive ================= */
+            @media (max-width: 1400px) {
+                .card-grid-6 {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            @media (max-width: 1200px) {
+                .dashboard-wrapper {
+                    flex-direction: column;
+                }
+
+                .sidebar {
+                    width: 100%;
+                }
+
+                .card-grid-4 {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .info-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .top-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .top-actions {
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .filter-select {
+                    width: 100%;
+                    min-width: auto;
+                }
+
+                .mini-user {
+                    border-left: 0;
+                    padding-left: 0;
+                    width: 100%;
+                }
+
+                .card-grid-4,
+                .card-grid-6 {
+                    grid-template-columns: 1fr;
+                }
+
+                .profile-top {
+                    align-items: flex-start;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="dashboard-wrapper">
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="profile-card">
+                    <div class="profile-top">
+                        <div class="avatar">TR</div>
+                        <div class="profile-info">
+                            <h3>Tanvir Rahman</h3>
+                            <p>Investor</p>
+                            <span class="investor-badge">INV-2024-00789</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M22 16.92V19a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 4.18 2 2 0 0 1 5 2h2.09a2 2 0 0 1 2 1.72l.34 2.29a2 2 0 0 1-.57 1.73L7.6 9.6a16 16 0 0 0 6.8 6.8l1.86-1.26a2 2 0 0 1 1.73-.57l2.29.34A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </div>
+                            <span>01712-345678</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 4h16v16H4z" />
+                                    <path d="M22 6l-10 7L2 6" />
+                                </svg>
+                            </div>
+                            <span>tanvir@example.com</span>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <span>Dhaka, Bangladesh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <nav class="menu">
+                    <a class="active" href="#">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="7" height="7" />
+                            <rect x="14" y="3" width="7" height="7" />
+                            <rect x="14" y="14" width="7" height="7" />
+                            <rect x="3" y="14" width="7" height="7" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21H3" />
+                            <path d="M7 21V7l5-4 5 4v14" />
+                        </svg>
+                        <span>Investments</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M3 17l6-6 4 4 7-8" />
+                            <path d="M14 7h6v6" />
+                        </svg>
+                        <span>Earnings</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <path d="M17 8l4 4-4 4" />
+                            <path d="M21 12H9" />
+                        </svg>
+                        <span>Withdrawals</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M4 19V9" />
+                            <path d="M10 19V5" />
+                            <path d="M16 19v-8" />
+                            <path d="M22 19v-4" />
+                        </svg>
+                        <span>Reports</span>
+                    </a>
+
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <path d="M16 17l5-5-5-5" />
+                            <path d="M21 12H9" />
+                        </svg>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+
+                <div class="powered-by">POWERED BY XSELLENCEBDLTD</div>
+            </aside>
+
+            <!-- Main -->
+            <main class="main-content">
+
+                <div class="top-header">
+                    <div>
+                        <h1>General Investor Dashboard</h1>
+                        <p>Welcome back! Here's an overview of your investment performance.</p>
+                    </div>
+
+                    <div class="top-actions">
+                        <select class="filter-select">
+                            <option>Filter by Month</option>
+                            <option>January 2026</option>
+                            <option>February 2026</option>
+                            <option>March 2026</option>
+                            <option>April 2026</option>
+                            <option>May 2026</option>
+                            <option>June 2026</option>
+                        </select>
+
+                        <div class="mini-user">
+                            <div class="mini-user-avatar">TR</div>
+                            <div class="mini-user-text">
+                                <small>Hi, <strong>Tanvir</strong></small>
+                                <small>Happy Investing!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Cards -->
+                <div class="card-grid-4">
+                    <div class="dash-card">
+                        <div class="card-icon icon-purple">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="9" cy="21" r="1" />
+                                <circle cx="20" cy="21" r="1" />
+                                <path d="M1 1h4l2.68 13.39A2 2 0 0 0 9.64 16H19a2 2 0 0 0 2-1.61L23 6H6" />
+                            </svg>
+                        </div>
+                        <h3>Daily Outlet Sales</h3>
+                        <div class="card-value">৳ 2,45,000</div>
+                        <div class="card-muted green-text">↑ 12.6% vs yesterday</div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-green">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M20 12V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14" />
+                                <path d="M20 12h-4a2 2 0 0 0 0 4h4v-4z" />
+                            </svg>
+                        </div>
+                        <h3>Investor Earnings</h3>
+                        <div class="card-value">৳ 18,750</div>
+                        <span class="status-pill status-green">Accrued</span>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-blue">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M21.21 15.89A10 10 0 1 1 12 2v10z" />
+                                <path d="M22 12A10 10 0 0 0 12 2" />
+                            </svg>
+                        </div>
+                        <h3>Investment Details</h3>
+                        <div class="card-value">৳ 15,00,000</div>
+                        <span class="status-pill status-blue">Active</span>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-orange">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                <path d="M9 12l2 2 4-4" />
+                            </svg>
+                        </div>
+                        <h3>Withdrawal Eligibility</h3>
+                        <div class="card-value">৳ 9,375</div>
+                        <span class="status-pill status-green">Eligible (50%)</span>
+                    </div>
+                </div>
+
+                <div class="card-grid-6">
+                    <div class="dash-card">
+                        <div class="card-icon icon-purple">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="8.5" cy="7" r="4" />
+                                <path d="M20 8v6" />
+                                <path d="M23 11h-6" />
+                            </svg>
+                        </div>
+                        <h3>Total Units</h3>
+                        <div class="card-value">1,500</div>
+                        <div class="card-muted">Units</div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-green">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <ellipse cx="12" cy="5" rx="7" ry="3" />
+                                <path d="M5 5v6c0 1.66 3.13 3 7 3s7-1.34 7-3V5" />
+                                <path d="M5 11v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6" />
+                            </svg>
+                        </div>
+                        <h3>Investment Value</h3>
+                        <div class="card-value">৳ 15,00,000</div>
+                        <div class="card-muted">Total Invested</div>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-blue">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M21.21 15.89A10 10 0 1 1 12 2v10z" />
+                                <path d="M22 12A10 10 0 0 0 12 2" />
+                            </svg>
+                        </div>
+                        <h3>Monthly Withdrawable Profit (50%)</h3>
+                        <div class="card-value">৳ 9,375</div>
+                        <span class="status-pill status-green">Eligible</span>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-orange">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="4" width="18" height="18" rx="2" />
+                                <path d="M16 2v4" />
+                                <path d="M8 2v4" />
+                                <path d="M3 10h18" />
+                            </svg>
+                        </div>
+                        <h3>Full Profit Eligibility (After 1 Year)</h3>
+                        <div class="card-value">৳ 1,87,500</div>
+                        <span class="status-pill status-orange">After Jul–Jun Cycle</span>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-red">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="5" y="11" width="14" height="10" rx="2" />
+                                <path d="M8 11V7a4 4 0 1 1 8 0v4" />
+                            </svg>
+                        </div>
+                        <h3>Principal Withdrawal (After 2 Years)</h3>
+                        <div class="card-value">৳ 15,00,000</div>
+                        <span class="status-pill status-red">After 2 Years</span>
+                    </div>
+
+                    <div class="dash-card">
+                        <div class="card-icon icon-purple">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="5" width="18" height="14" rx="2" />
+                                <circle cx="8" cy="12" r="2" />
+                                <path d="M14 10h4" />
+                                <path d="M14 14h4" />
+                            </svg>
+                        </div>
+                        <h3>Unique Investor ID</h3>
+                        <div class="card-value" style="font-size: 18px;">INV-2024-00789</div>
+                        <span class="status-pill status-purple">Verified</span>
+                    </div>
+                </div>
+
+                <div class="section-title">Investment & Withdrawal Information</div>
+
+                <div class="info-grid">
+                    <div class="info-panel panel-blue">
+                        <div class="panel-head">
+                            <div class="panel-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M3 10l9-7 9 7" />
+                                    <path d="M5 10v10" />
+                                    <path d="M19 10v10" />
+                                    <path d="M9 21V12h6v9" />
+                                    <path d="M3 21h18" />
+                                </svg>
+                            </div>
+                            <div class="panel-title">
+                                <h4>Investment Structure</h4>
+                                <div class="underline blue-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="bullet-list">
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-blue">✓</div>
+                                <div><strong class="text-blue">100 units = 1 investment unit</strong></div>
+                            </div>
+
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-blue">✓</div>
+                                <div>Calculations can be based on units or direct investment value.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel panel-green">
+                        <div class="panel-head">
+                            <div class="panel-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 2v6h6" />
+                                    <path d="M9 15l2 2 4-4" />
+                                </svg>
+                            </div>
+                            <div class="panel-title">
+                                <h4>Withdrawal Rules</h4>
+                                <div class="underline green-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="bullet-list">
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-green">✓</div>
+                                <div>Up to <strong class="text-green">50%</strong> of accumulated profit can be
+                                    withdrawn monthly.</div>
+                            </div>
+
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-green">✓</div>
+                                <div>After one year (<strong class="text-green">July to June</strong> cycle), full
+                                    accumulated profit can be withdrawn.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-panel panel-purple">
+                        <div class="panel-head">
+                            <div class="panel-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg>
+                            </div>
+                            <div class="panel-title">
+                                <h4>Additional Notes</h4>
+                                <div class="underline purple-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="bullet-list">
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-purple">✓</div>
+                                <div>Six-month prior notice required for principal withdrawal.</div>
+                            </div>
+
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-purple">✓</div>
+                                <div>Replacement investors may be introduced when an investor exits.</div>
+                            </div>
+
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-purple">✓</div>
+                                <div>General investors may also register as customers.</div>
+                            </div>
+
+                            <div class="bullet-item">
+                                <div class="bullet-dot text-purple">✓</div>
+                                <div>The system automatically generates unique investor IDs.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+    </body>
+
+</html>

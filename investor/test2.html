@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Founding Member Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary-color:#4f46e5;
+  --fmd-primary-dark:#4338ca;
+  --fmd-primary-light:#818cf8;
+  --fmd-secondary:#7c3aed;
+  --fmd-accent:#c026d3;
+  --fmd-success:#10b981;
+  --fmd-success-light:#34d399;
+  --fmd-danger:#f43f5e;
+  --fmd-danger-light:#fb7185;
+  --fmd-text:#1e1b3a;
+  --fmd-text-muted:#6b7280;
+  --fmd-glass-bg:rgba(255,255,255,.66);
+  --fmd-glass-border:rgba(79,70,229,.16);
+  --fmd-radius-lg:22px;
+  --fmd-radius-md:16px;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#f5f3ff 0%,#eef2ff 45%,#fdf4ff 100%);
+  color:var(--fmd-text);
+}
+.fmd-dashboard{max-width:1280px;margin:0 auto;padding:40px 24px 80px;}
+
+/* ---------- header ---------- */
+.fmd-header{
+  position:relative;
+  padding:40px 36px;
+  border-radius:var(--fmd-radius-lg);
+  background:linear-gradient(135deg,var(--primary-color) 0%,var(--fmd-secondary) 60%,var(--fmd-accent) 100%);
+  color:#fff;
+  overflow:hidden;
+  margin-bottom:40px;
+  box-shadow:0 20px 40px -16px rgba(79,70,229,.45);
+}
+.fmd-header::before,.fmd-header::after{
+  content:'';position:absolute;width:34px;height:34px;border-color:rgba(255,255,255,.5);
+}
+.fmd-header::before{top:18px;left:18px;border-top:2px solid;border-left:2px solid;border-radius:8px 0 0 0;}
+.fmd-header::after{bottom:18px;right:18px;border-bottom:2px solid;border-right:2px solid;border-radius:0 0 8px 0;}
+.fmd-eyebrow{
+  margin:0 0 8px;font-size:.75rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;opacity:.8;
+}
+.fmd-header h1{margin:0 0 8px;font-size:2rem;font-weight:800;letter-spacing:-.02em;}
+.fmd-subtitle{margin:0;font-size:.95rem;opacity:.85;}
+.fmd-date{font-weight:600;opacity:1;}
+
+/* ---------- sections ---------- */
+.fmd-section{margin-bottom:36px;}
+.fmd-section-title{
+  display:flex;align-items:center;gap:8px;margin:0 0 16px;
+  font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--primary-color);
+}
+.fmd-section-title::before{
+  content:'';width:18px;height:3px;border-radius:2px;
+  background:linear-gradient(90deg,var(--primary-color),var(--fmd-secondary));
+}
+
+/* ---------- kpi grid / cards ---------- */
+.fmd-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+
+.fmd-kpi-card{
+  position:relative;
+  background:var(--fmd-glass-bg);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--fmd-glass-border);
+  border-radius:var(--fmd-radius-lg);
+  padding:22px 22px 20px;
+  box-shadow:0 1px 2px rgba(79,70,229,.04),0 12px 24px -10px rgba(79,70,229,.2);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.fmd-kpi-card:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(79,70,229,.06),0 20px 36px -12px rgba(79,70,229,.3);}
+.fmd-kpi-card::before,.fmd-kpi-card::after{
+  content:'';position:absolute;width:14px;height:14px;
+  border-color:var(--fmd-primary-light);opacity:.5;
+}
+.fmd-kpi-card::before{top:8px;left:8px;border-top:2px solid;border-left:2px solid;border-radius:4px 0 0 0;}
+.fmd-kpi-card::after{bottom:8px;right:8px;border-bottom:2px solid;border-right:2px solid;border-radius:0 0 4px 0;}
+
+.fmd-kpi-icon{
+  width:44px;height:44px;border-radius:var(--fmd-radius-md);
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--primary-color),var(--fmd-secondary));
+  color:#fff;margin-bottom:14px;
+}
+.fmd-kpi-icon svg{width:22px;height:22px;}
+
+.fmd-kpi-label{margin:0 0 6px;font-size:.78rem;font-weight:600;color:var(--fmd-text-muted);text-transform:uppercase;letter-spacing:.04em;}
+.fmd-kpi-value{margin:0;font-size:1.6rem;font-weight:800;letter-spacing:-.01em;}
+.fmd-currency{margin-right:2px;font-size:1rem;font-weight:600;color:var(--primary-color);}
+.fmd-kpi-meta{margin:6px 0 0;font-size:.78rem;color:var(--fmd-text-muted);}
+
+/* income/outflow accent variants */
+.fmd-kpi-icon--success{background:linear-gradient(135deg,var(--fmd-success),var(--fmd-success-light));}
+.fmd-kpi-icon--danger{background:linear-gradient(135deg,var(--fmd-danger),var(--fmd-danger-light));}
+.fmd-kpi-icon--network{background:linear-gradient(135deg,var(--fmd-secondary),var(--fmd-accent));}
+
+/* founder highlight card (80% allocation) */
+.fmd-kpi-card--highlight{
+  background:linear-gradient(160deg,rgba(124,58,237,.1),rgba(192,38,211,.08)),var(--fmd-glass-bg);
+  border-color:rgba(124,58,237,.25);
+}
+.fmd-kpi-badge{
+  position:absolute;top:18px;right:18px;
+  font-size:.68rem;font-weight:700;letter-spacing:.03em;
+  color:#fff;background:linear-gradient(135deg,var(--fmd-secondary),var(--fmd-accent));
+  padding:4px 10px;border-radius:999px;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:640px){
+  .fmd-dashboard{padding:24px 16px 60px;}
+  .fmd-header{padding:28px 22px;}
+  .fmd-header h1{font-size:1.5rem;}
+  .fmd-kpi-value{font-size:1.35rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  .fmd-kpi-card{transition:none;}
+}
+</style>
+</head>
+<body>
+<div class="fmd-dashboard">
+
+  <header class="fmd-header">
+    <p class="fmd-eyebrow">Founding Member &middot; Management View</p>
+    <h1>Founding Member Dashboard</h1>
+    <p class="fmd-subtitle">Consolidated investment, revenue and network performance &mdash; updated <span class="fmd-date">18 Jun 2026</span></p>
+  </header>
+
+  <!-- Replace static numbers below with QWeb bindings, e.g. <t t-esc="total_investment"/> -->
+
+  <section class="fmd-section">
+    <h2 class="fmd-section-title">Equity &amp; Profit Overview</h2>
+    <div class="fmd-kpi-grid">
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Total Investment</p>
+        <h3 class="fmd-kpi-value"><span class="fmd-currency">৳</span>1,25,00,000</h3>
+      </div>
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon fmd-kpi-icon--success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Net Profit</p>
+        <h3 class="fmd-kpi-value"><span class="fmd-currency">৳</span>18,75,000</h3>
+      </div>
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Profit Percentage</p>
+        <h3 class="fmd-kpi-value">15.0%</h3>
+        <p class="fmd-kpi-meta">of total investment</p>
+      </div>
+
+      <div class="fmd-kpi-card fmd-kpi-card--highlight">
+        <span class="fmd-kpi-badge">80%</span>
+        <div class="fmd-kpi-icon fmd-kpi-icon--network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Shared with Investors</p>
+        <h3 class="fmd-kpi-value"><span class="fmd-currency">৳</span>15,00,000</h3>
+        <p class="fmd-kpi-meta">80% allocation of net profit</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="fmd-section">
+    <h2 class="fmd-section-title">Revenue &amp; Cash Flow</h2>
+    <div class="fmd-kpi-grid">
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon fmd-kpi-icon--success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Total Sales</p>
+        <h3 class="fmd-kpi-value"><span class="fmd-currency">৳</span>62,40,000</h3>
+      </div>
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon fmd-kpi-icon--danger">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16l3-2 3 2 3-2 3 2 3-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="14" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Total Expenses</p>
+        <h3 class="fmd-kpi-value"><span class="fmd-currency">৳</span>43,65,000</h3>
+      </div>
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Payments Received</p>
+        <h3 class="fmd-kpi-value"><span class="fmd-currency">৳</span>58,90,000</h3>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="fmd-section">
+    <h2 class="fmd-section-title">Network Overview</h2>
+    <div class="fmd-kpi-grid">
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon fmd-kpi-icon--network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Total Customers</p>
+        <h3 class="fmd-kpi-value">3,248</h3>
+      </div>
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon fmd-kpi-icon--network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l1.5-4h17L22 7"/><path d="M2 7v13a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7"/><path d="M2 7h20"/><path d="M9 21V12h6v9"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Outlets</p>
+        <h3 class="fmd-kpi-value">42</h3>
+      </div>
+
+      <div class="fmd-kpi-card">
+        <div class="fmd-kpi-icon fmd-kpi-icon--network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+        </div>
+        <p class="fmd-kpi-label">Investors</p>
+        <h3 class="fmd-kpi-value">87</h3>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
