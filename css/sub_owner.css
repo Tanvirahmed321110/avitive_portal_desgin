@@ -1,3 +1,10 @@
+:root{
+    --background-color:#e6f7ec;
+}
+
+body{
+    background-color: var(--background-color);
+}
 .card::after {
     content: '';
     top: 10px;
@@ -51,7 +58,26 @@
 }
 
 .sidebar {
-    background: linear-gradient(180deg, #0d8b18 0%, #4355da 48%, #000000da 100%);
+    background: linear-gradient(180deg,
+            var(--primary-color) 0%,
+            #4355da 48%,
+            #0f766e 100%);
+    background: linear-gradient(180deg,
+            var(--primary-color) 0%,
+            #4355da 48%,
+            #581c87 100%);
+    background: linear-gradient(180deg,
+            var(--primary-color) 0%,
+            #4355da 48%,
+            #047857 100%);
+    background: linear-gradient(180deg,
+            maroon 0%,
+            maroon 48%,
+            #0f766e 100%);
+    background: linear-gradient(250deg,
+            #127637 12%,
+            #166534 24%,
+            #0d642d 120%);
 }
 
 .card.other-card.active {
@@ -120,6 +146,7 @@
     background: rgba(246, 238, 238, 0.761);
     border: 1px solid red;
 }
+
 .info-panel:nth-child(3) {
     background: var(--background-color);
 }
@@ -233,6 +260,7 @@
     stroke-width: 2;
     transition: transform 0.45s ease;
 }
+
 .info-panel:hover .panel-icon svg {
     animation: svgOnlyJump 0.55s ease-in-out 4;
     transform-origin: center;
