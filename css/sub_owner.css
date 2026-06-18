@@ -59,26 +59,10 @@ body {
 }
 
 .sidebar {
-    background: linear-gradient(180deg,
-            var(--primary-color) 0%,
-            #4355da 48%,
-            #0f766e 100%);
-    background: linear-gradient(180deg,
-            var(--primary-color) 0%,
-            #4355da 48%,
-            #581c87 100%);
-    background: linear-gradient(180deg,
-            var(--primary-color) 0%,
-            #4355da 48%,
-            #047857 100%);
-    background: linear-gradient(180deg,
-            maroon 0%,
-            maroon 48%,
-            #0f766e 100%);
     background: linear-gradient(250deg,
-            #106730fc 48%,
+            #0e602c 48%,
             #166534 24%,
-            #0d642d 46%);
+            #0a5927 46%);
 }
 
 .card.other-card.active {
