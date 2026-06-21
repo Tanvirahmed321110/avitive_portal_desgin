@@ -453,8 +453,8 @@ td {
 .card::before {
     content: "";
     position: absolute;
-    right: -64px;
-    top: 50%;
+    right: -40px;
+    top: 90%;
     transform: translateY(-50%);
     width: 110px;
     height: 110px;
@@ -799,7 +799,10 @@ td {
     padding-bottom: 0;
     margin-bottom: 0;
 }
-
+.topbar.page-title{
+    padding: 0;
+    margin-bottom: 20px;
+}
 header.topbar {
     padding: 14px 20px;
     margin: 16px 32px;

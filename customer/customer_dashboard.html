@@ -13,10 +13,16 @@
 
 
         <div class="shell">
+
+            <!--====================================
+            ========    Sidbear Start Here  ========
+            ========================================
+            -->
             <aside class="sidebar">
 
-
+                <!--=============== Sidebar Profile Data ===============-->
                 <div class="side-profile">
+
                     <div class="d-flex gap-3 top align-center">
                         <div class="side-avatar">IC</div>
                         <div>
@@ -56,14 +62,17 @@
                 </div>
 
 
+
+                <!--===============  Sidebar Links Here  ===============-->
                 <nav class="menu">
                     <a class="active" href="/customer/customer_dashboard.html">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
-                        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
-                        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
-                        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
-                    </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                        </svg>
                         <span>Dashboard</span>
                     </a>
 
@@ -84,7 +93,7 @@
                         <span>Rewards</span>
                     </a>
 
-                        <a href="/customer/withdrawals.html">
+                    <a href="/customer/withdrawals.html">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                             <path d="M17 8l4 4-4 4"></path>
@@ -109,7 +118,15 @@
                 </div>
             </aside>
 
+
+
+
             <main class="main">
+
+                <!--====================================
+                ========    Header Start Here   ========
+                ========================================
+                -->
                 <header class="topbar align-center">
                     <div>
                         <h1 class="">Customer Dashboard.</h1>
@@ -145,8 +162,17 @@
                 </header>
 
 
+
+                <!--==========================================
+                ========    Main Content Start Here   ========
+                ==============================================
+                -->
                 <div class="main-wrap">
+
+                    <!--=============================||  Top Cards Here  ||===========================-->
                     <div class="grid-4 gap-4 gap-lg-3 grid-sm-2 gap-sm-3">
+
+                        <!--==========  For Profile Active/Disabled  ==========-->
                         <div class="card other-card active">
                             <div class="stat-icon success-bg">
                                 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
@@ -159,6 +185,8 @@
                             <h3 class="card-val success">Active</h3>
                             <div class="animation"></div>
                         </div>
+
+                        <!--==========  For Total Purchases  ==========-->
                         <div class="card stat">
                             <div class="stat-icon">
                                 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
@@ -170,6 +198,8 @@
                             <span class="label">Total Purchases</span>
                             <h3>৳ 85,500</h3>
                         </div>
+
+                        <!--==========  For Rewards Earned  ==========-->
                         <div class="card stat">
                             <div class="stat-icon">
                                 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
@@ -181,6 +211,8 @@
                             <span class="label">Rewards Earned</span>
                             <h3>৳ 8,250</h3>
                         </div>
+
+                        <!--==========  For Available Balance  ==========-->
                         <div class="card stat">
                             <div class="stat-icon">
                                 <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
@@ -196,7 +228,9 @@
 
 
                     <div class="main-grid">
-                        <section class="reward">
+
+                        <!--=======================|| For Reward Withdrawal Rules  ||=========================-->
+                        <div class="reward">
                             <span class="label">Reward
                                 Withdrawal</span>
                             <h2>Monthly Reward Settlement</h2>
@@ -213,9 +247,11 @@
                                     to
                                     Purchase</button>
                             </div>
-                        </section>
+                        </div>
 
-                        <section class="card other-card"><span class="label">History</span>
+
+                        <!--=======================|| For Withdrawal History  ||=========================-->
+                        <div class="card other-card"><span class="label">History</span>
                             <h3 style="margin:8px 0 18px;">Withdrawal Timeline</h3>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -241,11 +277,13 @@
                                     </div><strong>৳ 850</strong>
                                 </div>
                             </div>
-                        </section>
+                        </div>
                     </div>
 
                     <div class="main-grid table-sms">
-                        <section class="card other-card"><span class="label">Purchases</span>
+
+                        <!--=======================|| For Purchases History  ||=========================-->
+                        <div class="card other-card"><span class="label">Purchases</span>
                             <h3 class="mb-4">Purchase History</h3>
                             <div class="table-wrap">
                                 <table class="data-table">
@@ -347,10 +385,12 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </section>
+                        </div>
 
 
-                        <section class="card other-card"><span class="label">Notifications</span>
+
+                        <!--=======================|| For Notifications History  ||=========================-->
+                        <div class="card other-card"><span class="label">Notifications</span>
                             <h3 style="margin:8px 0 18px;">SMS Notifications</h3>
                             <div class="notification-list">
                                 <div class="notification">
@@ -375,7 +415,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </div>
+
+
                     </div>
                 </div>
             </main>
