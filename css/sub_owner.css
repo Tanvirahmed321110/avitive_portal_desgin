@@ -275,7 +275,21 @@ body {
 }
 
 
-
+@media(max-width:1439px) {
+    .business-overview .card::after {
+        transition: var(--transition);
+        opacity: .45;
+        content: unset;
+    }
+    .info-panel {
+    background: var(--success-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 255px;
+    box-shadow: var(--shadow-1);
+}
+}
 
 
 
