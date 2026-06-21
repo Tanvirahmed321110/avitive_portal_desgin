@@ -549,9 +549,10 @@ td {
     padding: 0 2px;
 }
 
-.business-overview .card{
+.business-overview .card {
     padding: 16px;
 }
+
 .business-overview .card .stat-icon {
     width: 42px;
     height: 42px;
@@ -714,7 +715,7 @@ td {
     background: var(--primary-color);
     color: var(--primary-color);
     border: 0;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 12px 16px;
     font-size: 13px;
     font-weight: 600;
@@ -799,10 +800,12 @@ td {
     padding-bottom: 0;
     margin-bottom: 0;
 }
-.topbar.page-title{
+
+.topbar.page-title {
     padding: 0;
     margin-bottom: 20px;
 }
+
 header.topbar {
     padding: 14px 20px;
     margin: 16px 32px;
@@ -909,7 +912,7 @@ header.topbar {
     width: 100%;
     padding: 13px 16px;
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    border-radius: 10px;
     font-size: 15px;
     outline: none;
     transition: var(--transition);
@@ -982,6 +985,10 @@ header.topbar {
 }
 
 @media (max-width:1439px) {
+    .menu {
+        padding-top: 32px;
+    }
+
     .card {
         border-radius: var(--radius-xl);
         padding: 16px 16px;
@@ -1006,32 +1013,36 @@ header.topbar {
         grid-template-columns: 270px 1fr;
         min-height: 100vh;
     }
-    .business-overview .card{
+
+    .business-overview .card {
         padding: 12px 12px;
     }
+
     .business-overview .card .stat-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    background: rgba(79, 70, 229, .10);
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    margin-bottom: 14px;
-}
-.card .label, .reward .label {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    padding: 4px 10px;
-    background: rgba(79, 70, 229, .10);
-    color: var(--primary-color);
-    font-size: 11px;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: rgba(79, 70, 229, .10);
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        margin-bottom: 14px;
+    }
+
+    .card .label,
+    .reward .label {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 4px 10px;
+        background: rgba(79, 70, 229, .10);
+        color: var(--primary-color);
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
 }
 
 @media(max-width:1100px) {
@@ -1058,14 +1069,43 @@ header.topbar {
 }
 
 @media(max-width:768px) {
+    header.topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+        border-radius: 0;
+        padding: 12px 12px;
+        margin: 0px 0px;
+    }
 
-    header .right{
+    header .profile {
+        gap: 8px;
+    }
+
+    header .profile p {
+        font-size: 10px !important;
+    }
+
+    header .profile-img {
+        width: 42px;
+        height: 42px;
+        border-radius: var(--radius-round);
+        border: 2px solid #5a57bd;
+        padding: 1px;
+    }
+
+    header .right {
         width: 100%;
         justify-content: space-between;
+        gap: 8px;
     }
-    header .right .month-select{
-        max-width: 190px;
+
+    header .right .month-select {
+        max-width: 150px;
     }
+
     .main {
         padding: 16px
     }
@@ -1083,7 +1123,7 @@ header.topbar {
     }
 
     .menu {
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr
     }
 
     .timeline-item {
@@ -1106,12 +1146,6 @@ header.topbar {
         gap: 0px;
     }
 
-    header.topbar {
-        padding: 12px 12px;
-        margin: 0px 0px;
-        border-radius: var(--radius-lg);
-        margin-bottom: 16px;
-    }
 
     header h1 {
         display: none;
@@ -1121,7 +1155,7 @@ header.topbar {
     header .menu-toggle {
         border: none;
         background: transparent;
-        padding: 8px;
+        padding: 4px;
         cursor: pointer;
         color: #111827;
         /* dark color */
@@ -1176,14 +1210,14 @@ header.topbar {
     }
 
     .month-select {
-        height: 40px;
+        height: 36px;
         min-width: 140px;
         border: 1px solid #dfe6fd;
         border-radius: 32px;
         background: #fff;
         color: var(--color-text-primary);
-        padding: 0 12px;
-        font-size: 13px;
+        padding: 0 8px;
+        font-size: 12px;
         font-weight: 600;
         outline: 0;
         font-family: inherit;
@@ -1206,9 +1240,50 @@ header.topbar {
 
     /* sidebar  */
     .sidebar {
-        height: auto;
-        position: relative;
-        display: none;
+        height: calc(100% - 0px);
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 260px;
+        z-index: 4;
+        padding: 12px;
+        margin: 0;
+        border-radius: 0;
+        transform: translateX(-100%);
+        transition: .3s ease-in-out;
+        overflow-y: auto;
+    }
+
+    .sidebar.active{
+        opacity: 1;
+        transform: translateX(0);
+
+    }
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(3px);
+        z-index: 3;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    .side-profile p {
+        font-size: 12px;
+        line-height: 1.7;
+        opacity: .8;
+    }
+
+    .powerby {
+        font-size: 10px;
     }
 
     .topbar {
@@ -1299,6 +1374,7 @@ header.topbar {
 
     .main .main-wrap {
         padding: 16px 0;
+        margin-top: 52px;
     }
 
     .timeline-item {
