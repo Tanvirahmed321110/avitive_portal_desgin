@@ -549,6 +549,22 @@ td {
     padding: 0 2px;
 }
 
+.business-overview .card{
+    padding: 16px;
+}
+.business-overview .card .stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(79, 70, 229, .10);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
 .topbar h1.gradient-heading {
     background: linear-gradient(90deg, var(--primary-color), #06b6d4, var(--primary-hover), var(--primary-color));
     background-size: 300% auto;
